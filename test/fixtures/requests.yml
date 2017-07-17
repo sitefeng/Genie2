@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  details: MyText
+  isPublic: false
+  askTime: 2017-07-16 18:33:46
+  askUserId: 1
+  answer: MyText
+  answerTime: 2017-07-16 18:33:46
+  answerUserId: 1
+
+two:
+  title: MyString
+  details: MyText
+  isPublic: false
+  askTime: 2017-07-16 18:33:46
+  askUserId: 1
+  answer: MyText
+  answerTime: 2017-07-16 18:33:46
+  answerUserId: 1

@@ -1,0 +1,2 @@
+module RequestAdviceHelper
+end
