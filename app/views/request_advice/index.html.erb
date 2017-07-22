@@ -1,0 +1,61 @@
+
+
+
+<h1>Request Advice</h1>
+<hr />
+
+
+<%= form_for :request_question, :url=>onSubmitQuestion_request_advice_index_path do |f| %>
+
+  <h2>Step 1: Your Question</h2>
+  <p>
+    <h4>Question Title</h4>
+    <%= f.text_field :title %>
+  <p>
+
+  <p>
+    <h4>Question Details</h4>
+    <%= f.text_area :details, size: "50x20" %>
+  </p>
+
+  <p>
+    Make my request public
+    <%= f.check_box :isPublic %>
+  </p>
+
+  <br />
+
+  <hr />
+  <h2>Step 2: Please Give Jacee an Advice</h2>
+
+  <h5>-> Jacee Asks:</h5>
+  <div>
+    <h4>What should I give to my 10yo son as a birthday gift?</h4>
+    <inline>2017-07-20</inline>
+    <p>I'm thinking of a toy drone, but it might be too dangerous, do you have any opionions on this?</p>
+    <p>
+      Sincerely,<br />
+      -Jacee
+    </p>
+
+  </div>
+  <br />
+
+  <%= fields_for :request_advice do |advice_field| %>
+    <p>
+      <h4>-> Your Perspective and Advice</h4>
+      <%= advice_field.text_area :answer, :size => "50x20", :placeholder => "Please give your advice here." %>
+    </p>
+
+  <% end %>
+
+  <br />
+
+  <hr />
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
+<br />

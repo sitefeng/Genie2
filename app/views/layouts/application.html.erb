@@ -9,6 +9,25 @@
   </head>
 
   <body>
+    
+    <nav class="navbar">
+      <div id="navbar" class="navbar-collapse collapse">
+        <inline>Genie</inline>
+        <%= link_to "Activity", activity_index_path %>
+        <%= link_to "My Requests", activity_index_path %>
+        <%= link_to "My Answers", activity_index_path %>
+        <%= link_to "Settings", activity_index_path %>
+        <%= link_to "Log In", activity_index_path %>
+        <%= link_to "Request Advice", request_advice_index_path %>
+      </div>
+    </nav>
+
+    <hr />
+
+    <% flash.each do |key, value| %>
+      <p><%= value %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

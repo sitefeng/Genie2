@@ -1,9 +1,9 @@
 class CreateUserPosts < ActiveRecord::Migration[5.1]
   def change
     create_table :user_posts do |t|
-      t.integer :userId
-      t.integer :questionId
-      t.boolean :isRequester
+      t.integer :userId, :null=>false
+      t.integer :questionId, :null=>false
+      t.boolean :isRequester, :null=>false, :default=>true
 
       t.timestamps
     end
