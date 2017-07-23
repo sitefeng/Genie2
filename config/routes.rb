@@ -26,4 +26,6 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/logout',  to: 'login#onLogout'
+
 end

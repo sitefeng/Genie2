@@ -20,6 +20,11 @@ class LoginController < ApplicationController
     passwordValid = user.storedPasswordHashMatchesPassword(userLogin['password'], user.salt)
 
     if passwordValid
+
+      # Log in to current session
+      logInSession(user.id)
+
+      # Notice and Redirect
       flash[:notice] = "Login Success"
       redirect_to(activity_index_path)
       return
@@ -60,5 +65,16 @@ class LoginController < ApplicationController
     end
 
   end
+
+  def onLogout
+    # Log in to current session
+    logOutSession
+
+    # Notice and Redirect
+    flash[:notice] = "Logout Success"
+    redirect_to(activity_index_path)
+    return
+  end
+
 
 end
