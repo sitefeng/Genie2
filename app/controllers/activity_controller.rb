@@ -11,8 +11,6 @@ def index
     @askUserNames.push(askUserName)
   end
 
-
-
 end
 
 

@@ -27,7 +27,6 @@ class RequestAdviceController < ApplicationController
       @saveResultString = "Error Saving"
     end
 
-
   end
 
   private

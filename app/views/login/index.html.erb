@@ -1,2 +1,68 @@
-<h1>Login#index</h1>
-<p>Find me in app/views/login/index.html.erb</p>
+<h1>Login or Signup</h1>
+<hr />
+
+<%= form_for :user_login, :url=>onLogin_login_index_path do |f|%>
+<h3>Login</h3>
+<p>
+  <inline>Username </inline>
+  <%= f.text_field :username %>
+</p>
+
+<p>
+  <inline>Password</inline>
+  <%= f.password_field :password %>
+</p>
+
+<p>
+  <%= f.check_box :remember_me %>
+  <inline>Remember me</inline>
+</p>
+
+<p>
+  <%= f.submit %>
+</p>
+
+<% end %>
+
+<br />
+<hr />
+
+<%= form_for :user_signup, :url=>onSignup_login_index_path do |f|%>
+<h3>Signup</h3>
+<p>
+  <inline>Username </inline>
+  <%= f.text_field :username %>
+</p>
+
+<p>
+  <inline>Email Address </inline>
+  <%= f.text_field :email %>
+</p>
+
+<p>
+  <inline>Password</inline>
+  <%= f.password_field :password %>
+</p>
+
+<p>
+  <inline>Password Confirmation</inline>
+  <%= f.password_field :password_repeated %>
+</p>
+
+<p>
+  <inline>Public Nickname</inline>
+  <%= f.text_field :nick_name %>
+</p>
+
+<p>
+  <%= f.check_box :email_notifications %>
+  <inline>Receive an email notification when someone replies to me</inline>
+</p>
+
+<p>
+  <%= f.submit %>
+</p>
+<% end %>
+
+<br />
+<hr />
