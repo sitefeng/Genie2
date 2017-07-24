@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170722183657) do
+ActiveRecord::Schema.define(version: 20170716223514) do
 
   create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "title"
+    t.string "title", null: false
     t.text "details"
-    t.boolean "isPublic"
-    t.datetime "askTime"
-    t.integer "askUserId"
+    t.boolean "isPublic", null: false
+    t.datetime "askTime", null: false
+    t.integer "askUserId", null: false
     t.text "answer"
     t.datetime "answerTime"
     t.integer "answerUserId"
@@ -35,8 +35,6 @@ ActiveRecord::Schema.define(version: 20170722183657) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nickName", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "profileUrl"
     t.string "username", null: false
     t.string "passwordHash", null: false
@@ -44,6 +42,8 @@ ActiveRecord::Schema.define(version: 20170722183657) do
     t.string "email", null: false
     t.boolean "emailNotifications", default: true, null: false
     t.boolean "isAdmin", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -1,1 +1,27 @@
-<h3>My Answers</h3>
+<h2>My Answers</h2>
+
+
+<% if @requests.length == 0 %>
+  <h4>You haven't given any advices yet. Try giving your first advice while making a personal request.</h4>
+  <div>
+    <%= button_to "Request Advice", request_advice_index_path, :method => :get %>
+  </div>
+<% end %>
+
+<% @requests.length.times do |i| %>
+<% req = @requests[i] %>
+<% askUserName = @askUserNames[i] %>
+<hr />
+<div>
+
+  <img src=""/>
+  <inline><%= "#{askUserName} asked on " %></inline>
+  <inline><%= req.askTime.strftime("%B %d, %Y") %></inline>
+  <h4><%= link_to "#{req.title}", request_details_path(req.id) %></h4>
+
+  <p><%= req.details %></p>
+
+</div>
+<hr />
+
+<% end %>

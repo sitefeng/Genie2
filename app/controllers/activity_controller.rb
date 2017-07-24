@@ -2,7 +2,7 @@ class ActivityController < ApplicationController
 
 def index
   # show only public posts on activity page
-  @publicRequests = Request.where(:isPublic => true).order(:askTime => :desc)
+  @publicRequests = Request.where(:isPublic => true).order(:askTime => :desc).limit(50)
 
   @askUserNames = Array.new()
   @publicRequests.each do |req|

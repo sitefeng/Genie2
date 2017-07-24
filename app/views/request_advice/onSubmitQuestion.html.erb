@@ -1,8 +1,4 @@
-<h1>OnSubmitQuestion</h1>
-
-<div>
-  <p><%= @saveResultString %></p>
-</div>
+<h1>Request Submitted</h1>
 
 <h3>Question Title</h3>
 <p><%= @questionTitle %></p>
@@ -10,9 +6,8 @@
 <h3>Question Details</h3>
 <p><%= @questionDetails %></p>
 
-<h3>Question isPublic</h3>
-<p><%= @questionIsPublic %></p>
+<h3>Question Type</h3>
+<p><%= @questionIsPublicString %></p>
 
-
-<h3>Another Question Answer</h3>
+<h3>Your Answer to <%=@matchUserName%>'s Question</h3>
 <p><%= @adviceAnswer %></p>

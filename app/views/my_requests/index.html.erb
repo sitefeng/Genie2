@@ -14,7 +14,7 @@
   <div id="#{p.id}">
     <img src=""/>
     <inline><%= "#{@currentUserName} asked on " %></inline>
-    <inline><%= req.askTime %></inline>
+    <inline><%= req.askTime.strftime("%B %d, %Y") %></inline>
     <h4><%= link_to "#{req.title}", request_details_path(req.id) %></h4>
 
     <p><%= req.details %></p>

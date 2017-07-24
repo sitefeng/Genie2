@@ -59,7 +59,7 @@ class LoginController < ApplicationController
     if newUser.save
 
       # Log in session after registration
-      logInSession(user.id)
+      logInSession(newUser.id)
 
       flash[:notice] = "Registration Success"
     else
