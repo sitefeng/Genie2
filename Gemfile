@@ -58,3 +58,4 @@ gem 'react-rails'
 gem 'jquery-rails', '~> 4.3.1'
 
 gem 'bcrypt', '~> 3.1.11'
+gem 'materialize-sass'

@@ -2,32 +2,42 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#introSection{
+p {
+  line-height: 2rem;
+}
+
+#index-banner {
 	width: 100%;
-	height: 600px;
-	margin: 70px 0px 50px;
-	background: url("../images/introBackground.png") center fixed no-repeat;
+	height: 500px;
+	background: url(image_path("background6b.jpg")) center fixed no-repeat;
 	background-size: cover;
 	text-align: center;
 }
 
-div#intro{
-	position: relative;
-	height: 400px;
-	top: 100px;
+#intro-text {
+	margin-top: 120px;
 }
 
-/*Contents*/
-
-#intro-content{
-	color: black;
-	text-align: center;
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
 }
 
-#intro-content > h2{
-	font: 40pt sans-serif;
+.parallax-container .section {
+  width: 100%;
 }
 
-#intro-content > p{
-	font: 15pt sans-serif;
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
 }

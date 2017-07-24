@@ -73,14 +73,21 @@ class RequestAdviceController < ApplicationController
     # Adding current user's advice to the matched user's request
     matchRequest = Request.find_by(:id => matchRequestId)
     if !matchRequest.nil?
-      matchRequest.answer = @adviceAnswer
-      matchRequest.answerTime = Time.now
-      matchRequest.answerUserId = currentUser.id
 
-      if !matchRequest.save
-        saveSuccess = false
+      if @adviceAnswer.length > 70
+        matchRequest.answer = @adviceAnswer
+        matchRequest.answerTime = Time.now
+        matchRequest.answerUserId = currentUser.id
+
+        if !matchRequest.save
+          saveSuccess = false
+        end
+      else
+        flash[:notice] = "Error Saving: Advice must be longer than 70 characters"
+        redirect_back(fallback_location: request_advice_index_path)
+        return
       end
-      
+
     end
 
     if saveSuccess

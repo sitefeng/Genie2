@@ -21,38 +21,41 @@
   </p>
 
   <br />
-
   <hr />
-  <h2>Step 2: Please Give <%=@matchUserName%> an Advice</h2>
 
-  <div>
-  <inline><%=@matchUserName%> asked on </inline>
-  <inline><%=@matchRequestAskTime%></inline>
+  <% if @matchUserName.nil? %>
+    <br />
+  <% else %>
+    <h2>Step 2: Please Give <%=@matchUserName%> an Advice</h2>
 
-    <h4><%=@matchReqeustTitle%></h4>
-    <p><%=@matchReqeustDetails%></p>
-    <p>
-      Sincerely,<br />
-      -<%=@matchUserName%>
-    </p>
+    <div>
+    <inline><%=@matchUserName%> asked on </inline>
+    <inline><%=@matchRequestAskTime%></inline>
 
-  </div>
-  <br />
+      <h4><%=@matchReqeustTitle%></h4>
+      <p><%=@matchReqeustDetails%></p>
+      <p>
+        Sincerely,<br />
+        -<%=@matchUserName%>
+      </p>
+    </div>
+    <br />
 
-  <%= hidden_field_tag :matchRequestId, "#{@matchRequestId}" %>
-  <%= hidden_field_tag :matchUserId, "#{@matchUserId}" %>
-  <%= hidden_field_tag :matchUserName, "#{@matchUserName}" %>
-  <%= fields_for :request_advice do |advice_field| %>
-    <p>
-      <h4>-> Your Perspective and Advice</h4>
-      <%= advice_field.text_area :answer, :size => "50x20", :placeholder => "Please give your advice here." %>
-    </p>
+    <%= hidden_field_tag :matchRequestId, "#{@matchRequestId}" %>
+    <%= hidden_field_tag :matchUserId, "#{@matchUserId}" %>
+    <%= hidden_field_tag :matchUserName, "#{@matchUserName}" %>
+
+    <%= fields_for :request_advice do |advice_field| %>
+      <p>
+        <h4>-> Your Perspective and Advice</h4>
+        <%= advice_field.text_area :answer, :size => "50x20", :placeholder => "Please give your advice here." %>
+      </p>
+    <% end %>
+    <br />
+    <hr />
 
   <% end %>
 
-  <br />
-
-  <hr />
   <p>
     <%= f.submit %>
   </p>
