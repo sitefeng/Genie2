@@ -16,6 +16,11 @@ class LoginController < ApplicationController
      end
 
     user = User.find_by(:username => userLogin['username'])
+    if user.nil?
+      flash[:notice] = "Login Failed: User does not exist"
+      redirect_back(fallback_location: login_index_path)
+      return
+    end
 
     passwordValid = user.storedPasswordHashMatchesPassword(userLogin['password'], user.salt)
 
@@ -48,13 +53,18 @@ class LoginController < ApplicationController
       return
     end
 
+    if userSignup["password_repeated"] != userSignup["password"]
+      flash[:notice] = "Error Registering: given passwords do not match"
+      redirect_back(fallback_location: login_index_path)
+      return
+    end
+
     newUser = User.new
     newUser.username = userSignup["username"]
     newUser.password = userSignup["password"]
-    newUser.password_confirmation = userSignup["password_confirmation"]
     newUser.email = userSignup["email"]
     newUser.nickName = userSignup["nick_name"]
-    newUser.emailNotifications = userSignup["email_notifications"]
+    # newUser.emailNotifications = userSignup["email_notifications"]
 
     if newUser.save
 
