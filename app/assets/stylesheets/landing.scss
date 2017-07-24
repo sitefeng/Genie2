@@ -1,0 +1,33 @@
+// Place all the styles related to the landing controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#introSection{
+	width: 100%;
+	height: 600px;
+	margin: 70px 0px 50px;
+	background: url("../images/introBackground.png") center fixed no-repeat;
+	background-size: cover;
+	text-align: center;
+}
+
+div#intro{
+	position: relative;
+	height: 400px;
+	top: 100px;
+}
+
+/*Contents*/
+
+#intro-content{
+	color: black;
+	text-align: center;
+}
+
+#intro-content > h2{
+	font: 40pt sans-serif;
+}
+
+#intro-content > p{
+	font: 15pt sans-serif;
+}

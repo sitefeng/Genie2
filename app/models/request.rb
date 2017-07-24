@@ -1,8 +1,7 @@
 class Request < ApplicationRecord
 
-  validates_presence_of :title
-  validates_presence_of :isPublic
-  validates_presence_of :askTime
+  validates :title,    :presence => true
+  validates :askTime,  :presence => true
   belongs_to :user, :foreign_key=> "askUserId"
-  
+
 end

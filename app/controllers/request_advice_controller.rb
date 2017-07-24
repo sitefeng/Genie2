@@ -1,6 +1,11 @@
 class RequestAdviceController < ApplicationController
 
   def index
+    if currentUser.nil?
+      flash[:notice] = "Please log in first before requesting an advice"
+      redirect_to(login_index_path)
+      return
+    end
   end
 
   def onSubmitQuestion
@@ -18,13 +23,13 @@ class RequestAdviceController < ApplicationController
     newRequest.details = @questionDetails
     newRequest.isPublic = @questionIsPublic
     newRequest.askTime = Time.now
-    newRequest.askUserId = 1
+    newRequest.askUserId = currentUser.id
 
     @saveResultString = "Request Not Saved"
     if newRequest.save
       @saveResultString = "Saved Successfully"
     else
-      @saveResultString = "Error Saving"
+      @saveResultString = "Error Saving: #{newRequest.errors.full_messages}"
     end
 
   end

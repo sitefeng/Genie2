@@ -57,6 +57,10 @@ class LoginController < ApplicationController
     newUser.emailNotifications = userSignup["email_notifications"]
 
     if newUser.save
+
+      # Log in session after registration
+      logInSession(user.id)
+
       flash[:notice] = "Registration Success"
     else
       flash[:notice] = "Error Registering: #{newUser.errors.full_messages}"

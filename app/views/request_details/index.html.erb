@@ -1,0 +1,25 @@
+<h1>Request Details</h1>
+
+<p>
+  <inline><%= @askUser.nickName %> asked on </inline>
+  <inline><%= @req.askTime %></inline>
+</p>
+<h4><%= @req.title %></h4>
+<p><%= @req.details %></p>
+<br />
+<hr />
+
+<% if @answerUser.nil? %>
+  <h3>No Advice Yet</h3>
+<% else %>
+  <p>
+    <inline><%= @askUser.nickName %> answered on </inline>
+    <inline><%= @req.askTime %></inline>
+  </p>
+  <p>
+    <%= @answer %>
+  </p>
+<% end %>
+
+<br />
+<hr />

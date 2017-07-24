@@ -8,7 +8,8 @@
     <img src=""/>
     <inline><%= "#{askUserName} asked: " %></inline>
     <inline><%= req.askTime %></inline>
-    <h4><%= req.title %></h4>
+    <h4><%= link_to "#{req.title}", request_details_path(req.id) %></h4>
+
     <p><%= req.details %></p>
   </div>
 </div>

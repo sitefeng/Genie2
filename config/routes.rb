@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
 
+  get 'landing/index'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'activity#index'
 
+  get 'landing/index'
   get 'activity/index'
   get 'my_requests/index'
   get 'my_answers/index'
   get 'settings/index'
-
 
   resources :request_advice, only: [] do
     collection do
@@ -27,5 +29,8 @@ Rails.application.routes.draw do
   end
 
   get '/logout',  to: 'login#onLogout'
+
+  get '/request_details/index/:id', :to => 'request_details#index', :as => 'request_details'
+
 
 end
