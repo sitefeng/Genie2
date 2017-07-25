@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Genie2</title>
+    <title>Donna</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
 
   <body>
@@ -15,7 +14,7 @@
       <div class="nav-wrapper container">
 
         <ul class="left">
-          <li><%= link_to "The Donna", landing_index_path %></li>
+          <li><%= link_to "Donna", landing_index_path %></li>
         </ul>
 
         <ul class="left hide-on-med-and-down">
@@ -45,6 +44,48 @@
 
     <%= yield %>
 
+    <br />
+    <br />
+    <footer class="page-footer teal">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Donna</h5>
+            <p class="grey-text text-lighten-2">We are trying to create platforms for people to be more human in a data-centric world. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style='display:inline;'>
+                <input type="hidden" name="cmd" value="_donations">
+                <input type="hidden" name="business" value="K8QPYAAWRV7S2">
+                <input type="hidden" name="lc" value="CA">
+                <input type="hidden" name="item_name" value="Donna">
+                <input type="hidden" name="no_note" value="1">
+                <input type="hidden" name="no_shipping" value="1">
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_LG.gif:NonHosted">
+
+                <input type="submit" value="Donate" style="border:none;padding: 0;background: none;" name="submit" alt="Donate">
+              </form></li>
+              <li>Made with <a class="white-text" href="http://materializecss.com">Materialize</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Social</h5>
+            <ul>
+              <li><a class="white-text" href="https://www.facebook.com/askTheDonna/">Facebook</a></li>
+              <li><a href="mailto:technochimera@gmail.com" class="contact-link white-text">Email</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        Made by team <a class="brown-text text-lighten-3" href="https://www.facebook.com/askTheDonna/">AskDonna</a>. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
 
   </body>
 </html>

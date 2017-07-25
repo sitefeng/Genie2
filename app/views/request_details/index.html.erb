@@ -1,24 +1,46 @@
 <div class="container">
-  <h4>Request Details</h4>
 
-  <p>
-    <inline><%= @askUser.nickName %> asked on </inline>
-    <inline><%= @req.askTime.strftime("%B %d, %Y") %></inline>
-  </p>
-  <h4><%= @req.title %></h4>
-  <p><%= @req.details %></p>
+  <h4>Request Details</h4>
+  <div class="divider"></div>
+  <br />
+
+  <h5>Question</h5>
+  <div class="card teal darken-3">
+    <div class="card-content white-text">
+      <b><%= @askUser.nickName %> asked on </b>
+      <b><%= @req.askTime.strftime("%B %d, %Y") %></b>
+      <div style="font-family: 'Comic Sans MS', cursive, sans-serif">
+        <span class="card-title"><%= @req.title %></span>
+        <div class="divider"></div>
+        <p><%= @req.details %></p>
+      </div>
+    </div>
+  </div>
+
   <br />
   <hr />
+  <br />
+
+
 
   <% if @answerUser.nil? %>
-    <h3>No Advice Yet</h3>
+  <div class="center grey-text">
+    <h5>No Advice Yet</h5>
+  </div>
+
   <% else %>
-    <p>
-      <inline><%= @askUser.nickName %> answered on </inline>
-      <inline><%= @req.askTime.strftime("%B %d, %Y") %></inline>
-    </p>
-    <p>
-      <%= @req.answer %>
-    </p>
+
+    <h5>Advice</h5>
+
+    <div class="card teal lighten-3">
+      <div class="card-content">
+        <b><%= @askUser.nickName %> answered on </b>
+        <b><%= @req.askTime.strftime("%B %d, %Y") %></b>
+        <p>
+          <%= @req.answer %>
+        </p>
+      </div>
+    </div>
+
   <% end %>
 </div>

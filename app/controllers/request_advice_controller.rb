@@ -70,10 +70,13 @@ class RequestAdviceController < ApplicationController
     newRequest.askTime = Time.now
     newRequest.askUserId = currentUser.id
 
+    @questionAskTime = newRequest.askTime
+
     saveSuccess = true
     if !newRequest.save
       saveSuccess = false
     end
+    @questionId = newRequest.id
 
     # Adding current user's advice to the matched user's request
     matchRequest = Request.find_by(:id => matchRequestId)

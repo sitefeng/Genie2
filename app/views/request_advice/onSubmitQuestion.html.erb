@@ -1,13 +1,30 @@
-<h1>Request Submitted</h1>
+<div class="container">
 
-<h3>Question Title</h3>
-<p><%= @questionTitle %></p>
+  <div class="row header">
+    <h4>Request Submitted</h4>
+    <div class="divider"></div>
+    <br />
+  </div>
 
-<h3>Question Details</h3>
-<p><%= @questionDetails %></p>
+  <%= link_to(request_details_path(@questionId)) do %>
+    <div class="card teal darken-3">
+      <div class="card-content white-text">
+        <b>You asked on </b>
+        <b><%= @questionAskTime.strftime("%B %d, %Y") %></b>
+        <div style="font-family: 'Comic Sans MS', cursive, sans-serif">
+          <span class="card-title"><%= @questionTitle %></span>
+          <div class="divider"></div>
+          <p><%= @questionDetails %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
-<h3>Question Type</h3>
-<p><%= @questionIsPublicString %></p>
+  <div class="center">
+    <p class="center-align">You can view all of your requests by going back to My Requests</p>
+    <div class="btn-large waves-effect waves-light orange">
+      <%= button_to "My Requests", my_requests_index_path, :method => :get %>
+    </div>
+  </div>
 
-<h3>Your Answer to <%=@matchUserName%>'s Question</h3>
-<p><%= @adviceAnswer %></p>
+</div>

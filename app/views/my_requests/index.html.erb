@@ -1,25 +1,28 @@
-<h2>My Requests</h2>
+<div class="container">
+  <h4>My Requests</h4>
+  <div class="divider"></div>
+  <br />
 
-<% if @requests.length == 0 %>
-  <h4>You haven't requested any advices yet. Try making your first personal request.</h4>
-  <div>
-    <%= button_to "Request Advice", request_advice_index_path, :method => :get %>
-  </div>
-<% end %>
+  <% if @requests.length == 0 %>
+    <p class="center-align">You haven't requested any advices yet. Try making your first personal request.</p>
+    <div class="center btn-large waves-effect waves-light orange">
+      <%= button_to "Request Advice", request_advice_index_path, :method => :get %>
+    </div>
+  <% end %>
 
-<% @requests.length.times do |i| %>
-<% req = @requests[i] %>
-<hr />
-<div>
-  <div id="#{p.id}">
-    <img src=""/>
-    <inline><%= "#{@currentUserName} asked on " %></inline>
-    <inline><%= req.askTime.strftime("%B %d, %Y") %></inline>
-    <h4><%= link_to "#{req.title}", request_details_path(req.id) %></h4>
-
-    <p><%= req.details %></p>
-  </div>
+  <% @requests.length.times do |i| %>
+    <% req = @requests[i] %>
+    <%= link_to(request_details_path(req.id)) do %>
+      <div class="card teal lighten-5">
+        <div class="card-content black-text">
+          <b><%= "#{@currentUserName} asked on " %></b>
+          <b><%= req.askTime.strftime("%B %d, %Y") %></b>
+          <span class="card-title">
+            <%=req.title%>
+          </span>
+          <p><%= req.details %></p>
+        </div>
+      </div>
+      <% end %>
+  <% end %>
 </div>
-<hr />
-
-<% end %>

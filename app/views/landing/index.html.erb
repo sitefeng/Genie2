@@ -4,7 +4,7 @@
     <div class="section no-pad-bot">
       <div id="intro-text" class="container">
 
-        <h1 class="header center teal-text text-lighten-3">The Donna</h1>
+        <h1 class="header center teal-text text-lighten-3">Ask Donna</h1>
         <div class="row center">
           <h5 class="header col s12 light">Get the personal and emotional advice you need, anonymously</h5>
         </div>
@@ -66,8 +66,22 @@
           <h4>Help Us Improve</h4>
           <p class="center-align light">If you think we have helped you in any way, consider giving us a donation. The money will help us to make this website even better. Feel free to send us a feature request any time.</p>
 
-          <a href="https://www.facebook.com/happenvr" class="contact-link" target="_blank"><button type="button" class="btn-large waves-effect waves-light green">Donate</button></a>
-          <a href="mailto:technochimera@gmail.com" class="contact-link"><button type="button" class="btn-large waves-effect waves-light orange">Contact Us</button></a>
+
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style='display:inline;'>
+            <input type="hidden" name="cmd" value="_donations">
+            <input type="hidden" name="business" value="K8QPYAAWRV7S2">
+            <input type="hidden" name="lc" value="CA">
+            <input type="hidden" name="item_name" value="Donna">
+            <input type="hidden" name="no_note" value="1">
+            <input type="hidden" name="no_shipping" value="1">
+            <input type="hidden" name="currency_code" value="USD">
+            <input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_LG.gif:NonHosted">
+
+            <input type="submit" class="btn-large waves-effect waves-light green" value="Donate" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+          </form>
+
+          <inline><a href="mailto:technochimera@gmail.com" class="contact-link"><button type="button" class="btn-large waves-effect waves-light orange">Contact Us</button></a></inline>
         </div>
       </div>
 
@@ -77,41 +91,6 @@
   <br />
   <br />
 
-
-  <footer class="page-footer teal">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">The Donna</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
 
   </body>
 </html>

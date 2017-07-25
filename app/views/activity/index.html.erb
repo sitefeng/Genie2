@@ -11,11 +11,12 @@
     <%= link_to(request_details_path(req.id)) do %>
       <div class="card teal lighten-5">
         <div class="card-content black-text">
-          <span><%= "#{askUserName} asked on " %></span>
-          <span><%= req.askTime.strftime("%B %d, %Y") %></span>
+          <b><%= "#{askUserName} asked on " %></b>
+          <b><%= req.askTime.strftime("%B %d, %Y") %></b>
           <span class="card-title">
             <%=req.title%>
           </span>
+          <div class="divider"></div>
           <p><%= req.details %></p>
         </div>
 
