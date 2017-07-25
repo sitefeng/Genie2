@@ -8,24 +8,23 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <header>
 
     <div class="navbar-fixed">
       <nav class="teal lighten-3 navbar" role="navigation">
         <div class="nav-wrapper container">
 
-          <ul class="left">
-            <li><%= link_to "AskDonna", landing_index_path %></li>
+          <ul class="">
+            <li><%= link_to "Donna", landing_index_path, :class=>"brand-logo" %></li>
           </ul>
 
-          <ul class="left hide-on-med-and-down">
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+          <ul class="right hide-on-med-and-down">
             <li><%= link_to "Activity", activity_index_path %></li>
             <li><%= link_to "My Requests", my_requests_index_path %></li>
             <li><%= link_to "My Answers", my_answers_index_path %></li>
             <li><%= link_to "#{@loginLabelText}", @loginLabelPath %></li>
-          </ul >
-
-          <ul class="right">
             <li>
               <%= link_to "Request Advice", request_advice_index_path, :class=>"btn-large waves-effect waves-light orange darken-2" %>
             </li>
@@ -34,8 +33,22 @@
       </nav>
     </div>
 
-    <!--  -->
 
+    <ul class="side-nav" id="mobile-demo">
+      <li><%= link_to "Activity", activity_index_path %></li>
+      <li><%= link_to "My Requests", my_requests_index_path %></li>
+      <li><%= link_to "My Answers", my_answers_index_path %></li>
+      <li><%= link_to "#{@loginLabelText}", @loginLabelPath %></li>
+      <li>
+        <%= link_to "Request Advice", request_advice_index_path, :class=>"btn-large waves-effect waves-light orange darken-2" %>
+      </li>
+    </ul>
+
+  </header>
+
+  <!-- *********************************** -->
+
+  <body>
     <div class="container center">
       <% flash.each do |key, value| %>
         <div class="row" style="border:2px solid orange">
@@ -89,5 +102,13 @@
       </div>
     </footer>
 
+    <script>
+      $( document ).ready(function(){
+        $(".button-collapse").sideNav();
+      })
+    </script>
+
   </body>
+
+
 </html>
