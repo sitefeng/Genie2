@@ -4,9 +4,17 @@
   <br />
 
   <% if @requests.length == 0 %>
-    <p class="center-align">You haven't given any advices yet. Try giving your first advice while making a personal request.</p>
-    <div class="center btn-large waves-effect waves-light orange">
-      <%= button_to "Request Advice", request_advice_index_path, :method => :get %>
+    <div class="center">
+      <br />
+      <h3 class="center-align grey-text"><i class="large material-icons">create</i></h3>
+      <h5 class="center-align grey-text">You haven't given any advices yet. Try giving your first advice while making a personal request.</h5>
+      <br />
+      <div class="btn-large waves-effect waves-light orange">
+        <%= button_to "Request Advice", request_advice_index_path, :method => :get %>
+      </div>
+
+      <br />
+      <br />
     </div>
   <% end %>
 

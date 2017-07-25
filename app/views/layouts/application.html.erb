@@ -10,27 +10,29 @@
 
   <body>
 
-    <nav class="teal lighten-3 navbar" role="navigation">
-      <div class="nav-wrapper container">
+    <div class="navbar-fixed">
+      <nav class="teal lighten-3 navbar" role="navigation">
+        <div class="nav-wrapper container">
 
-        <ul class="left">
-          <li><%= link_to "Donna", landing_index_path %></li>
-        </ul>
+          <ul class="left">
+            <li><%= link_to "AskDonna", landing_index_path %></li>
+          </ul>
 
-        <ul class="left hide-on-med-and-down">
-          <li><%= link_to "Activity", activity_index_path %></li>
-          <li><%= link_to "My Requests", my_requests_index_path %></li>
-          <li><%= link_to "My Answers", my_answers_index_path %></li>
-          <li><%= link_to "#{@loginLabelText}", @loginLabelPath %></li>
-        </ul >
+          <ul class="left hide-on-med-and-down">
+            <li><%= link_to "Activity", activity_index_path %></li>
+            <li><%= link_to "My Requests", my_requests_index_path %></li>
+            <li><%= link_to "My Answers", my_answers_index_path %></li>
+            <li><%= link_to "#{@loginLabelText}", @loginLabelPath %></li>
+          </ul >
 
-        <ul class="right">
-          <li>
-            <%= link_to "Request Advice", request_advice_index_path, :class=>"btn-large waves-effect waves-light orange darken-2" %>
-          </li>
-        </ul >
-      </div>
-    </nav>
+          <ul class="right">
+            <li>
+              <%= link_to "Request Advice", request_advice_index_path, :class=>"btn-large waves-effect waves-light orange darken-2" %>
+            </li>
+          </ul >
+        </div>
+      </nav>
+    </div>
 
     <!--  -->
 
