@@ -1,65 +1,91 @@
-<h1>Request Advice</h1>
-<hr />
+<div class="container">
+
+  <div class="row header">
+    <h3>Request Advice</h3>
+    <div class="divider"></div>
+  </div>
+
+  <div class="row">
+
+    <%= form_for :request_question, :url=>onSubmitQuestion_request_advice_index_path do |f| %>
+
+    <div class="col s12 l6">
+      <div>
+        <h5>Step 1: Your Question</h5>
+        <div class="divider"></div>
+        <br />
+
+        <div class="input-field">
+          <%= f.text_field :title, :placeholder=>"Your question title goes here", :type=>"text", :id=>"title", :html => {'data-length'=>"255"} %>
+          <%= f.label "Question Title", :for => :title %>
+        </div>
+
+        <div class="input-field">
+          <%= f.text_area :details, :placeholder=>"Details of your question goes here", :id=>"details", :class=>"materialize-textarea" %>
+          <%= f.label "Question Details", :for => :details %>
+        </div>
+
+        <div>
+          <%= f.check_box :isPublic, :id=>"isPublic" %>
+          <%= f.label "Make my request public", :for => :isPublic %>
+        </div>
+      </div>
+      <br />
+      <br />
+
+    </div>
+
+    <div class="row">
+      <div class="col s12 l6">
+        <h5>Step 2: Give <%=@matchUserName%> an Advice</h5>
+        <div class="divider"></div>
+        <br />
+
+        <% if @matchUserName.nil? %>
+          <p>Normally you are matched with another person, but there are no matches found at this time. You can directly submit your question.</p>
+          <br />
+        <% else %>
+          <div class="card teal darken-1">
+            <div class="card-content white-text">
+              <inline><%=@matchUserName%> asked on </inline>
+              <inline><%=@matchRequestAskTime%></inline>
+              <div style="font-family: 'Comic Sans MS', cursive, sans-serif">
+                <span class="card-title"><%=@matchReqeustTitle%></span>
+                <p><%=@matchReqeustDetails%></p>
+                <br />
+                <p>
+                  Sincerely,<br />
+                  <%=@matchUserName%>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <%= hidden_field_tag :matchRequestId, "#{@matchRequestId}" %>
+          <%= hidden_field_tag :matchUserId, "#{@matchUserId}" %>
+          <%= hidden_field_tag :matchUserName, "#{@matchUserName}" %>
+
+          <%= fields_for :request_advice do |advice_field| %>
+
+            <%= advice_field.label "Your Perspective and Advice (>70 characters)", :for=>:answer %>
+            <%= advice_field.text_area :answer, :class=>"materialize-textarea", :placeholder => "Please give your advice here." %>
+
+          <% end %> <!-- end of fields_for -->
+
+         <% end %> <!-- end of if @matchUserName.nil? statement -->
+      </div>
 
 
-<%= form_for :request_question, :url=>onSubmitQuestion_request_advice_index_path do |f| %>
+    </div>
 
-  <h2>Step 1: Your Question</h2>
-  <p>
-    <h4>Question Title</h4>
-    <%= f.text_field :title %>
-  <p>
+    <div class="row center">
+      <span class="btn-large waves-effect waves-light orange"><%= f.submit "Submit Request"%></span>
+    </div>
 
-  <p>
-    <h4>Question Details</h4>
-    <%= f.text_area :details, size: "50x20" %>
-  </p>
+    <% end %>
 
-  <p>
-    Make my request public
-    <%= f.check_box :isPublic %>
-  </p>
+  </div>
 
   <br />
-  <hr />
 
-  <% if @matchUserName.nil? %>
-    <br />
-  <% else %>
-    <h2>Step 2: Please Give <%=@matchUserName%> an Advice</h2>
-
-    <div>
-    <inline><%=@matchUserName%> asked on </inline>
-    <inline><%=@matchRequestAskTime%></inline>
-
-      <h4><%=@matchReqeustTitle%></h4>
-      <p><%=@matchReqeustDetails%></p>
-      <p>
-        Sincerely,<br />
-        -<%=@matchUserName%>
-      </p>
-    </div>
-    <br />
-
-    <%= hidden_field_tag :matchRequestId, "#{@matchRequestId}" %>
-    <%= hidden_field_tag :matchUserId, "#{@matchUserId}" %>
-    <%= hidden_field_tag :matchUserName, "#{@matchUserName}" %>
-
-    <%= fields_for :request_advice do |advice_field| %>
-      <p>
-        <h4>-> Your Perspective and Advice</h4>
-        <%= advice_field.text_area :answer, :size => "50x20", :placeholder => "Please give your advice here." %>
-      </p>
-    <% end %>
-    <br />
-    <hr />
-
-  <% end %>
-
-  <p>
-    <%= f.submit %>
-  </p>
-
-<% end %>
-
-<br />
+</div>

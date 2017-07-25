@@ -1,68 +1,76 @@
-<h1>Login or Signup</h1>
-<hr />
+<div class="container">
+  <h4>Login / Signup</h4>
+  <div class="divider"></div>
+  <br />
 
-<%= form_for :user_login, :url=>onLogin_login_index_path do |f|%>
-<h3>Login</h3>
-<p>
-  <inline>Username </inline>
-  <%= f.text_field :username %>
-</p>
+  <div class="row">
+    <div class="col s12 l6">
 
-<p>
-  <inline>Password</inline>
-  <%= f.password_field :password %>
-</p>
+      <div class="center teal-text">
+        <h5>Log In</h5>
+      </div>
 
-<!-- <p>
-  <%= f.check_box :remember_me %>
-  <inline>Remember me</inline>
-</p> -->
+      <%= form_for :user_login, :url=>onLogin_login_index_path do |f|%>
+      <div>
+        <%= f.label "Username", :for=>:username %>
+        <%= f.text_field :username %>
+      </div>
 
-<p>
-  <%= f.submit %>
-</p>
+      <div>
+        <%= f.label "Password", :for=>:password %>
+        <%= f.password_field :password %>
+      </div>
 
-<% end %>
+      <div class="center">
+        <span class='btn-large waves-effect waves-light orange'>
+          <%= f.submit "Log In" %>
+        </span>
+      </div>
 
+      <% end %>
+    </div>
+
+    <div class="col s12 l6">
+      <div class="center teal-text">
+        <h5>Signup</h5>
+      </div>
+
+      <%= form_for :user_signup, :url=>onSignup_login_index_path do |f|%>
+
+      <div>
+        <%= f.label "Username", :for=>:username %>
+        <%= f.text_field :username %>
+      </div>
+
+      <div>
+        <%= f.label "Email Address", :for=>:email %>
+        <%= f.text_field :email %>
+      </div>
+
+      <div>
+        <%= f.label "Password", :for=>:password %>
+        <%= f.password_field :password %>
+      </div>
+
+      <div>
+        <%= f.label "Password Confirmation", :for=>:password_repeated %>
+        <%= f.password_field :password_repeated %>
+      </div>
+
+      <div>
+        <%= f.label "Public Nickname", :for=>:nick_name %>
+        <%= f.text_field :nick_name %>
+      </div>
+
+      <div class="center">
+        <span class="btn-large waves-effect waves-light teal">
+          <%= f.submit "Sign Up" %>
+        </span>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
 <br />
-<hr />
-
-<%= form_for :user_signup, :url=>onSignup_login_index_path do |f|%>
-<h3>Signup</h3>
-<p>
-  <inline>Username </inline>
-  <%= f.text_field :username %>
-</p>
-
-<p>
-  <inline>Email Address </inline>
-  <%= f.text_field :email %>
-</p>
-
-<p>
-  <inline>Password</inline>
-  <%= f.password_field :password %>
-</p>
-
-<p>
-  <inline>Password Confirmation</inline>
-  <%= f.password_field :password_repeated %>
-</p>
-
-<p>
-  <inline>Public Nickname</inline>
-  <%= f.text_field :nick_name %>
-</p>
-
-<!-- <p>
-  <%= f.check_box :email_notifications %>
-  <inline>Receive an email notification when someone replies to me</inline>
-</p> -->
-
-<p>
-  <%= f.submit %>
-</p>
-<% end %>
-
 <br />
-<hr />

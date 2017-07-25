@@ -1,25 +1,24 @@
-<h1>Request Details</h1>
+<div class="container">
+  <h4>Request Details</h4>
 
-<p>
-  <inline><%= @askUser.nickName %> asked on </inline>
-  <inline><%= @req.askTime %></inline>
-</p>
-<h4><%= @req.title %></h4>
-<p><%= @req.details %></p>
-<br />
-<hr />
-
-<% if @answerUser.nil? %>
-  <h3>No Advice Yet</h3>
-<% else %>
   <p>
-    <inline><%= @askUser.nickName %> answered on </inline>
-    <inline><%= @req.askTime %></inline>
+    <inline><%= @askUser.nickName %> asked on </inline>
+    <inline><%= @req.askTime.strftime("%B %d, %Y") %></inline>
   </p>
-  <p>
-    <%= @req.answer %>
-  </p>
-<% end %>
+  <h4><%= @req.title %></h4>
+  <p><%= @req.details %></p>
+  <br />
+  <hr />
 
-<br />
-<hr />
+  <% if @answerUser.nil? %>
+    <h3>No Advice Yet</h3>
+  <% else %>
+    <p>
+      <inline><%= @askUser.nickName %> answered on </inline>
+      <inline><%= @req.askTime.strftime("%B %d, %Y") %></inline>
+    </p>
+    <p>
+      <%= @req.answer %>
+    </p>
+  <% end %>
+</div>

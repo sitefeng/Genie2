@@ -46,10 +46,15 @@ class RequestAdviceController < ApplicationController
     @questionDetails = requestQuestion["details"]
     @questionIsPublic = requestQuestion["isPublic"]
 
-    @adviceAnswer = requestAdvice["answer"]
-    if @adviceAnswer.nil?
+    if (requestAdvice.nil? || requestAdvice["answer"].nil?) && !@matchUserId.nil?
+      flash[:notice] = "Error Saving: Advice must be longer than 70 characters"
       redirect_back(fallback_location: request_advice_index_path)
       return
+    end
+
+    @adviceAnswer = ""
+    if !requestAdvice.nil? && !requestAdvice["answer"].nil?
+      @adviceAnswer = requestAdvice["answer"]
     end
 
     @questionIsPublicString = "Private Question. No one other than matched users can see this request."
@@ -91,9 +96,11 @@ class RequestAdviceController < ApplicationController
     end
 
     if saveSuccess
-      flash[:notice] = "Saved Successfully"
+      flash[:notice] = "Request Submitted Successfully"
     else
       flash[:notice] = "Error Saving: #{newRequest.errors.full_messages}"
+      redirect_back(fallback_location: request_advice_index_path)
+      return
     end
   end
 

@@ -1,18 +1,27 @@
 
-<% @publicRequests.length.times do |i| %>
-<% req = @publicRequests[i] %>
-<% askUserName = @askUserNames[i] %>
-<hr />
-<div>
-  <div id="#{p.id}">
-    <img src=""/>
-    <inline><%= "#{askUserName} asked: " %></inline>
-    <inline><%= req.askTime.strftime("%B %d, %Y") %></inline>
-    <h4><%= link_to "#{req.title}", request_details_path(req.id) %></h4>
+<div class="container">
+  <h4>Activity</h4>
+  <div class="divider"></div>
+  <br />
 
-    <p><%= req.details %></p>
-  </div>
+  <% @publicRequests.length.times do |i| %>
+    <% req = @publicRequests[i] %>
+    <% askUserName = @askUserNames[i] %>
+
+    <%= link_to(request_details_path(req.id)) do %>
+      <div class="card teal lighten-5">
+        <div class="card-content black-text">
+          <span><%= "#{askUserName} asked on " %></span>
+          <span><%= req.askTime.strftime("%B %d, %Y") %></span>
+          <span class="card-title">
+            <%=req.title%>
+          </span>
+          <p><%= req.details %></p>
+        </div>
+
+      </div>
+      <% end %>
+
+  <% end %>
+
 </div>
-<hr />
-
-<% end %>

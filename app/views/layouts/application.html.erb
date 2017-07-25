@@ -11,7 +11,7 @@
 
   <body>
 
-    <nav class="white navbar" role="navigation">
+    <nav class="teal lighten-3 navbar" role="navigation">
       <div class="nav-wrapper container">
 
         <ul class="left">
@@ -27,7 +27,7 @@
 
         <ul class="right">
           <li>
-            <%= link_to "Request Advice", request_advice_index_path %>
+            <%= link_to "Request Advice", request_advice_index_path, :class=>"btn-large waves-effect waves-light orange darken-2" %>
           </li>
         </ul >
       </div>
@@ -35,12 +35,16 @@
 
     <!--  -->
 
-    <div>
+    <div class="container center">
       <% flash.each do |key, value| %>
-        <p><%= value %></p>
+        <div class="row" style="border:2px solid orange">
+          <p><%= value %></p>
+        </div>
       <% end %>
     </div>
 
     <%= yield %>
+
+
   </body>
 </html>
