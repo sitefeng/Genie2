@@ -2,8 +2,18 @@
 <html>
   <head>
     <title>Donna</title>
-    <%= csrf_meta_tags %>
 
+    <!-- Connecting to Google AdSense -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4877409910199261",
+        enable_page_level_ads: true
+      });
+    </script>
+
+    <!-- Rails Related Tags -->
+    <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -12,10 +22,10 @@
 
     <div class="navbar-fixed">
       <nav class="teal lighten-3 navbar" role="navigation">
-        <div class="nav-wrapper container">
+        <div class="nav-wrapper container"> <!-- class="nav-wrapper container" -->
 
           <ul class="">
-            <li><%= link_to "Donna", landing_index_path, :class=>"brand-logo" %></li>
+            <li style="font-family: 'Comic Sans MS', cursive, sans-serif"><%= link_to "Donna", landing_index_path, :class=>"brand-logo" %></li>
           </ul>
 
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -65,7 +75,7 @@
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
-            <h5 class="white-text">Donna</h5>
+            <h5 class="white-text" style="font-family: 'Comic Sans MS', cursive, sans-serif">Donna</h5>
             <p class="grey-text text-lighten-2">We are trying to create platforms for people to be more human in a data-centric world. Any amount would help support and continue development on this project and is greatly appreciated.</p>
           </div>
           <div class="col l3 s12">
