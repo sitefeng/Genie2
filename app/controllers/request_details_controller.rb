@@ -5,7 +5,5 @@ class RequestDetailsController < ApplicationController
     @askUser = User.find_by(:id => @req.askUserId)
     @answerUser = User.find_by(:id => @req.answerUserId)
 
-    
-
   end
 end
