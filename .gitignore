@@ -22,3 +22,11 @@
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+
+# Custom changes
+*.DS_Store
+.env
+.env.production
+
+

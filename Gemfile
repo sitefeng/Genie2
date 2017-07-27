@@ -59,3 +59,6 @@ gem 'jquery-rails', '~> 4.3.1'
 
 gem 'bcrypt', '~> 3.1.11'
 gem 'materialize-sass'
+
+# for storing environment variables
+gem 'dotenv-rails'
