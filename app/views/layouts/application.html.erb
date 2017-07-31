@@ -88,12 +88,16 @@
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
-            <h5 class="white-text" style="font-family: 'Courgette', sans-serif">Donna</h5>
+            <h5 class="white-text" style="font-family: 'Courgette', sans-serif"><%= link_to "AskDonna", about_index_path, :class=>"white-text" %></h5>
             <p class="grey-text text-lighten-2">We are trying to create platforms for people to be more human in a data-centric world. Any amount would help support and continue development on this project and is greatly appreciated.</p>
           </div>
           <div class="col l3 s12">
             <h5 class="white-text">Links</h5>
+
             <ul>
+              <li>
+                <%= link_to "About", about_index_path, :class=>"white-text" %>
+              </li>
               <li><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style='display:inline;'>
                 <input type="hidden" name="cmd" value="_donations">
                 <input type="hidden" name="business" value="K8QPYAAWRV7S2">
@@ -109,6 +113,13 @@
 
               <li>UI with <a class="white-text" href="http://materializecss.com">Materialize</a></li>
               <li>Analytics through <a class="white-text" href="https://mixpanel.com">Mixpanel</a></li>
+              <li>
+                <%= link_to "Terms of Service", terms_of_service_index_path, :class=>"white-text" %>
+              </li>
+              <li>
+                <%= link_to "Privacy Policy", privacy_policy_index_path, :class=>"white-text" %>
+              </li>
+
             </ul>
           </div>
           <div class="col l3 s12">
