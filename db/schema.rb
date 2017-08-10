@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170716223514) do
+ActiveRecord::Schema.define(version: 20170809161838) do
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "content", null: false
+    t.bigint "user_id"
+    t.bigint "request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["request_id"], name: "index_comments_on_request_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorite_votes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.string "votable_type"
+    t.bigint "votable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_favorite_votes_on_user_id"
+    t.index ["votable_type", "votable_id"], name: "index_favorite_votes_on_votable_type_and_votable_id"
+  end
 
   create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title", null: false
@@ -23,6 +43,15 @@ ActiveRecord::Schema.define(version: 20170716223514) do
     t.integer "answerUserId"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "star_votes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["request_id"], name: "index_star_votes_on_request_id"
+    t.index ["user_id"], name: "index_star_votes_on_user_id"
   end
 
   create_table "user_posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -46,4 +75,9 @@ ActiveRecord::Schema.define(version: 20170716223514) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "comments", "requests"
+  add_foreign_key "comments", "users"
+  add_foreign_key "favorite_votes", "users"
+  add_foreign_key "star_votes", "requests"
+  add_foreign_key "star_votes", "users"
 end

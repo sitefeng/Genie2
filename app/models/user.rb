@@ -2,6 +2,11 @@ require 'bcrypt'
 
 class User < ApplicationRecord
 
+  # associations
+  has_many :requests, :dependent=>:destroy
+  has_many :comments, :through=>:requests, :dependent=>:destroy
+
+
   # real password as virtual attribute
   attr_accessor :password
 
