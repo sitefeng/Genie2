@@ -1,13 +1,18 @@
 <div class="container">
-  <h4>My Requests</h4>
+
+  <h5>My Requests > My Answers</h5>
   <div class="divider"></div>
   <br />
+
+  <!-- Inner Menu Selection -->
+  <%= render :partial=>'partials/my_requests_selection', :locals=> {active_row:1} %>
+  <!--end of selection list area-->
 
   <% if @requests.length == 0 %>
     <div class="center">
       <br />
-      <h3 class="center-align grey-text"><i class="large material-icons">inbox</i></h3>
-      <h5 class="center-align grey-text">You haven't requested any advices yet. Try making your first personal request.</h5>
+      <h3 class="center-align grey-text"><i class="large material-icons">create</i></h3>
+      <h5 class="center-align grey-text">You haven't given any advices yet. Try giving your first advice while making a personal request.</h5>
       <br />
       <div class="btn-large waves-effect waves-light orange">
         <%= button_to "Request Advice", request_advice_index_path, :method => :get %>
@@ -18,12 +23,14 @@
     </div>
   <% end %>
 
+
   <% @requests.length.times do |i| %>
     <% req = @requests[i] %>
+    <% askUserName = @askUserNames[i] %>
     <%= link_to(request_details_path(req.id)) do %>
       <div class="card teal lighten-5">
         <div class="card-content black-text">
-          <b><%= "#{@currentUserName} asked on " %></b>
+          <b><%= "#{askUserName} asked on " %></b>
           <b><%= req.askTime.strftime("%B %d, %Y") %></b>
           <span class="card-title">
             <%=req.title%>
@@ -33,10 +40,11 @@
       </div>
       <% end %>
   <% end %>
+
 </div>
 
 <script type="text/javascript">
-  mixpanel.track("my_requests_viewed", {
-      "user_id": 000,
-  });
+mixpanel.track("my_requests_answers_viewed", {
+    "user_id": 000,
+});
 </script>

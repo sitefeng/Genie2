@@ -3,6 +3,9 @@
   <head>
     <title>Donna</title>
 
+    <!-- Gon Gem -->
+    <%= Gon::Base.render_data %>
+
     <!-- Connecting to Google AdSense -->
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
@@ -45,8 +48,8 @@
 
           <ul class="right hide-on-med-and-down">
             <li><%= link_to "Activity", activity_index_path %></li>
-            <li><%= link_to "My Requests", my_requests_index_path %></li>
-            <li><%= link_to "My Answers", my_answers_index_path %></li>
+            <li><%= link_to "My Requests", my_requests_questions_index_path %></li>
+            <li><%= link_to "Settings", settings_index_path %></li>
             <li><%= link_to "#{@loginLabelText}", @loginLabelPath %></li>
             <li>
               <%= link_to "Request Advice", request_advice_index_path, :class=>"btn-large waves-effect waves-light orange darken-2" %>
@@ -59,8 +62,8 @@
 
     <ul class="side-nav" id="mobile-demo">
       <li><%= link_to "Activity", activity_index_path %></li>
-      <li><%= link_to "My Requests", my_requests_index_path %></li>
-      <li><%= link_to "My Answers", my_answers_index_path %></li>
+      <li><%= link_to "My Requests", my_requests_questions_index_path %></li>
+      <li><%= link_to "Settings", settings_index_path %></li>
       <li><%= link_to "#{@loginLabelText}", @loginLabelPath %></li>
       <li>
         <%= link_to "Request Advice", request_advice_index_path, :class=>"btn-large waves-effect waves-light orange darken-2" %>
@@ -89,7 +92,7 @@
         <div class="row">
           <div class="col l6 s12">
             <h5 class="white-text" style="font-family: 'Courgette', sans-serif"><%= link_to "Donna", about_index_path, :class=>"white-text" %></h5>
-            <p class="grey-text text-lighten-2">We are trying to create platforms for people to be more human in a data-centric world. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+            <p class="grey-text text-lighten-2">We are trying to create platforms for people to be more human in a data-centric world. Any donations would help support this project and is greatly appreciated. Please email us if you encounter any issues while using the site.</p>
           </div>
           <div class="col l3 s12">
             <h5 class="white-text">Links</h5>
@@ -123,7 +126,7 @@
             </ul>
           </div>
           <div class="col l3 s12">
-            <h5 class="white-text">Social</h5>
+            <h5 class="white-text">Contact</h5>
             <ul>
               <li><a class="white-text" href="https://www.facebook.com/askTheDonna/">Facebook</a></li>
               <li><a href="mailto:technochimera@gmail.com" class="contact-link white-text">Email</a></li>

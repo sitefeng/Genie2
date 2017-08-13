@@ -1,0 +1,15 @@
+
+<%= link_to(request_details_path(currentReqest.id)) do %>
+  <div class="card teal lighten-5">
+    <div class="card-content black-text">
+      <b><%= "#{askUserName} asked on " %></b>
+      <b><%= currentRequest.askTime.strftime("%B %d, %Y") %></b>
+      <span class="card-title">
+        <%=currentRequest.title%>
+      </span>
+      <div class="divider"></div>
+      <p><%= currentRequest.details %></p>
+    </div>
+
+  </div>
+<% end %>

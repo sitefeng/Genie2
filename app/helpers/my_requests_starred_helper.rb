@@ -1,0 +1,2 @@
+module MyRequestsStarredHelper
+end

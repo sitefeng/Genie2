@@ -62,3 +62,6 @@ gem 'materialize-sass'
 
 # for storing environment variables
 gem 'dotenv-rails'
+
+# for sending variables from ruby to js file
+gem 'gon'

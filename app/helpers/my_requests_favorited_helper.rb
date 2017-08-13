@@ -1,0 +1,2 @@
+module MyRequestsFavoritedHelper
+end

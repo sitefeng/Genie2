@@ -1,0 +1,24 @@
+<div class="collection">
+  <% questions_class = ""
+     answers_class = ""
+     favorited_class = ""
+     starred_class = ""
+  %>
+
+  <% case active_row
+   when 0
+     questions_class = "active"
+   when 1
+     answers_class = "active"
+   when 2
+     favorited_class = "active"
+   when 3
+     starred_class = "active"
+   end
+  %>
+
+  <%= link_to("My Questions", my_requests_questions_index_path, :class=>"collection-item #{questions_class}") %>
+  <%= link_to("My Answers", my_requests_answers_index_path, :class=>"collection-item #{answers_class}") %>
+  <%= link_to("Favorited Requests", my_requests_favorited_index_path, :class=>"collection-item #{favorited_class}") %>
+  <%= link_to("Starred Requests", my_requests_starred_index_path, :class=>"collection-item #{starred_class}") %>
+</div>

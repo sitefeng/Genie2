@@ -1,0 +1,17 @@
+<div class="container">
+
+  <h5>My Requests > Starred Requests</h5>
+  <div class="divider"></div>
+  <br />
+
+  <!-- Inner Menu Selection -->
+  <%= render :partial=>'partials/my_requests_selection', :locals=> {active_row:3} %>
+  <!--end of selection list area-->
+
+</div>
+
+<script type="text/javascript">
+mixpanel.track("my_requests_starred_viewed", {
+    "user_id": 000,
+});
+</script>
