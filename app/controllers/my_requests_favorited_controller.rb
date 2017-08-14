@@ -7,7 +7,17 @@ class MyRequestsFavoritedController < ApplicationController
       return
     end
 
-    @favoritedRequests = FavoriteVote.find_by(:user => currentUser)
+    @favoritedVotes = FavoriteVote.where(:user => currentUser, :votable_type=>:Request).order(:updated_at => :desc)
+
+    @favoritedRequests = Array.new()
+    for favVote in @favoritedVotes
+      requestForVote = favVote.votable
+      @favoritedRequests.push(requestForVote)
+    end
+
+    if @favoritedRequests.nil?
+      @favoritedRequests = Array.new()
+    end
 
     @askUserNames = Array.new()
     @favoritedRequests.each do |req|
@@ -33,7 +43,7 @@ class MyRequestsFavoritedController < ApplicationController
       return
     end
 
-    favoriteVoteOrNil = FavoriteVote.find_by(:user => currentUser)
+    favoriteVoteOrNil = FavoriteVote.find_by(:user_id => currentUser.id, :votable_id => requestId)
 
     # Toggle Favorite
     if favoriteVoteOrNil.nil?

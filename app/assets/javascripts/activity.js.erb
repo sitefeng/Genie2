@@ -1,0 +1,27 @@
+
+$(document).on('turbolinks:load', function() {
+
+  // on click
+  $(".favorite").click( function() {
+
+    var req_id = $(this).attr('id');
+    var filled_status = $('img.favorite#' + req_id).data('filled');
+
+    if(filled_status == true) {
+      $('img.favorite#' + req_id).data('filled', false);
+      $('img.favorite#' + req_id).attr('src', "<%= image_path('icons/heart_icon.png') %>");
+    } else {
+      $('img.favorite#' + req_id).data('filled', true);
+      $('img.favorite#' + req_id).attr('src', "<%= image_path('icons/heart_filled_icon.png') %>");
+    }
+
+    $.ajax({
+      type: "POST",
+      url: '/my_requests_favorited/' + req_id,
+      success: function() {
+
+      }
+    });
+  });
+
+});

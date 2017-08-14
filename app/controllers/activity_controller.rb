@@ -17,7 +17,7 @@ def index
       @isFavArray.push(false)
     else
 
-      favVote = FavoriteVote.find_by(:user_id => currentUser.id)
+      favVote = FavoriteVote.find_by(:user_id => currentUser.id, :votable_id => req.id)
       if favVote.nil?
         @isFavArray.push(false)
       else

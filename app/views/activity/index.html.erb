@@ -22,12 +22,11 @@
 
               <% heart_filled_src = "icons/heart_filled_icon.png" %>
               <% heart_empty_src = "icons/heart_icon.png" %>
-
               <div style="margin:auto; width:40px; height:40px;">
                 <% if isFav %>
-                  <%= image_tag(heart_filled_src, class: "favorite", size:"40x40", alt:"heart icon", data: { req_id: "#{req.id}", filled: "true"}) %>
+                  <%= image_tag(heart_filled_src, class: "favorite", id: "#{req.id}", size:"40x40", alt:"heart icon", data: { req_id: "#{req.id}", filled: "true"}) %>
                 <% else %>
-                  <%= image_tag(heart_empty_src, class: "favorite", size:"40x40", alt:"heart empty icon", data: { req_id: "#{req.id}", filled: "false"}) %>
+                  <%= image_tag(heart_empty_src, class: "favorite", id: "#{req.id}", size:"40x40", alt:"heart empty icon", data: { req_id: "#{req.id}", filled: "false"}) %>
                 <% end %>
               </div>
 
