@@ -29,10 +29,10 @@ def index
   @isStarArray = Array.new()
   @publicRequests.each do |req|
     if currentUser.nil?
-      @isFavArray.push(false)
+      @isStarArray.push(false)
     else
-      favVote =  StarVote.find_by(:user_id => currentUser.id)
-      if favVote.nil?
+      starVote =  StarVote.find_by(:user_id => currentUser.id, :votable_id => req.id)
+      if starVote.nil?
         @isStarArray.push(false)
       else
         @isStarArray.push(true)

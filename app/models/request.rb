@@ -6,7 +6,7 @@ class Request < ApplicationRecord
   has_many :comments, :dependent=>:destroy
 
   has_many :favorite_votes, :as=>"votable", :dependent=>:destroy
-  has_many :star_votes, :dependent=>:destroy
+  has_many :star_votes, :as=>"votable", :dependent=>:destroy
 
 
   # validations

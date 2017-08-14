@@ -1,18 +1,19 @@
 
 $(document).on('turbolinks:load', function() {
 
-  // on click
+  // on click favorite
   $(".favorite").click( function() {
 
     var req_id = $(this).attr('id');
-    var filled_status = $('img.favorite#' + req_id).data('filled');
+    var favImgName = 'img.favorite#' + req_id;
+    var filled_status = $(favImgName).data('filled');
 
     if(filled_status == true) {
-      $('img.favorite#' + req_id).data('filled', false);
-      $('img.favorite#' + req_id).attr('src', "<%= image_path('icons/heart_icon.png') %>");
+      $(favImgName).data('filled', false);
+      $(favImgName).attr('src', "<%= image_path('icons/heart_icon.png') %>");
     } else {
-      $('img.favorite#' + req_id).data('filled', true);
-      $('img.favorite#' + req_id).attr('src', "<%= image_path('icons/heart_filled_icon.png') %>");
+      $(favImgName).data('filled', true);
+      $(favImgName).attr('src', "<%= image_path('icons/heart_filled_icon.png') %>");
     }
 
     $.ajax({
@@ -23,5 +24,33 @@ $(document).on('turbolinks:load', function() {
       }
     });
   });
+
+
+  // on click star
+  $(".star").click( function() {
+
+    var req_id = $(this).attr('id');
+    var starImgName = '#' + req_id + ".star";
+
+    var filled_status = $(starImgName).data('filled');
+
+    if(filled_status == true) {
+      $(starImgName).data('filled', false);
+      $(starImgName).attr('src', "<%= image_path('icons/star_icon.png') %>");
+    } else {
+      $(starImgName).data('filled', true);
+      $(starImgName).attr('src', "<%= image_path('icons/star_filled_icon.png') %>");
+    }
+
+    $.ajax({
+      type: "POST",
+      url: '/my_requests_starred/' + req_id,
+      success: function() {
+
+      }
+    });
+  });
+
+
 
 });

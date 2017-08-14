@@ -35,9 +35,9 @@
               <% star_empty_src = "icons/star_icon.png" %>
               <div style="margin:auto; width:40px; height:40px;">
                 <% if isStar %>
-                  <%= image_tag(star_filled_src, class: "star", size:"40x40", alt:"star icon", data: { req_id: "#{req.id}", filled: "true"}) %>
+                  <%= image_tag(star_filled_src, class: "star", id: "#{req.id}", size:"40x40", alt:"star icon", data: { req_id: "#{req.id}", filled: "true"}) %>
                 <% else %>
-                  <%= image_tag(star_empty_src, class: "star", size:"40x40", alt:"star empty icon", data: { req_id: "#{req.id}", filled: "false"}) %>
+                  <%= image_tag(star_empty_src, class: "star", id: "#{req.id}", size:"40x40", alt:"star empty icon", data: { req_id: "#{req.id}", filled: "false"}) %>
                 <% end %>
               </div>
 

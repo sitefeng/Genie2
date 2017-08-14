@@ -47,11 +47,12 @@ ActiveRecord::Schema.define(version: 20170809161838) do
 
   create_table "star_votes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
-    t.bigint "request_id"
+    t.string "votable_type"
+    t.bigint "votable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["request_id"], name: "index_star_votes_on_request_id"
     t.index ["user_id"], name: "index_star_votes_on_user_id"
+    t.index ["votable_type", "votable_id"], name: "index_star_votes_on_votable_type_and_votable_id"
   end
 
   create_table "user_posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -78,6 +79,5 @@ ActiveRecord::Schema.define(version: 20170809161838) do
   add_foreign_key "comments", "requests"
   add_foreign_key "comments", "users"
   add_foreign_key "favorite_votes", "users"
-  add_foreign_key "star_votes", "requests"
   add_foreign_key "star_votes", "users"
 end

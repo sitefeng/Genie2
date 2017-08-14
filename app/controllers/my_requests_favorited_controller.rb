@@ -2,7 +2,7 @@ class MyRequestsFavoritedController < ApplicationController
 
   def index
     if currentUser.nil?
-      flash[:notice] = "Please log in first to see My Answers"
+      flash[:notice] = "Please log in first to see My Requests"
       redirect_to(login_index_path)
       return
     end
@@ -30,7 +30,7 @@ class MyRequestsFavoritedController < ApplicationController
 
   def create
     if currentUser.nil?
-      flash[:notice] = "Please log in first to see My Answers"
+      flash[:notice] = "Please log in first to favorite a request"
       redirect_to(login_index_path)
       return
     end
@@ -43,6 +43,7 @@ class MyRequestsFavoritedController < ApplicationController
       return
     end
 
+    # Check if the user has already favorited this request
     favoriteVoteOrNil = FavoriteVote.find_by(:user_id => currentUser.id, :votable_id => requestId)
 
     # Toggle Favorite
