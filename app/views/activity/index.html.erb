@@ -6,18 +6,19 @@
   <% @publicRequests.length.times do |i| %>
     <% req = @publicRequests[i] %>
     <% askUserName = @askUserNames[i] %>
+    <% favCount = @favCountArray[i] %>
     <% isFav = @isFavArray[i] %>
     <% isStar = @isStarArray[i] %>
 
 
       <div class="card teal lighten-5">
 
-        <div class="row">
+        <div class="row card-content">
 
           <div class="col s2">
-            <div style="padding: 15px 15px 15px 15px;">
+            <div style="">
               <div style="border: 1px solid white; text-align:center; background-color: teal; width:40px; margin:auto;" class="white-text">
-                2039
+                <%=favCount%>
               </div>
 
               <% heart_filled_src = "icons/heart_filled_icon.png" %>
@@ -46,14 +47,38 @@
           </div>
 
           <%= link_to(request_details_path(req.id)) do %>
-          <div class="card-content black-text col s10">
+          <div class="card-texts black-text col s10">
             <b><%= "#{askUserName} asked on " %></b>
             <b><%= req.askTime.strftime("%B %d, %Y") %></b>
-            <span class="card-title">
+            <div class="card-title">
               <%=req.title%>
-            </span>
-            <div class="divider"></div>
-            <p><%= req.details %></p>
+            </div>
+
+            <!-- Card Badges -->
+            <% isRequestPublicString = "Private" %>
+            <% isRequestPublicColor = "grey" %>
+            <% if req.isPublic %>
+              <% isRequestPublicString = "Public" %>
+              <% isRequestPublicColor = "blue darken-2" %>
+            <% end %>
+
+            <% isRequestAnsweredString = "No Answers" %>
+            <% isRequestAnsweredColor = "grey" %>
+            <% unless req.answer.nil? %>
+              <% isRequestAnsweredString = "Answered" %>
+              <% isRequestAnsweredColor = "green darken-3" %>
+            <% end %>
+
+            <div style="display:block;">
+              <span class="left_badge new badge <%=isRequestPublicColor%>" data-badge-caption=""><%= isRequestPublicString %></span>
+              <span class="left_badge new badge <%=isRequestAnsweredColor%>" data-badge-caption=""><%= isRequestAnsweredString %></span>
+              <span class="left_badge new badge grey" data-badge-caption="Comments">4</span>
+            </div>
+
+            <div class="divider" style="margin:10px 0px 10px 0px;"></div>
+
+            <!-- Card Question Details -->
+            <p><%= req.details.truncate(256, separator: ' ') %></p>
           </div>
           <% end %>
 

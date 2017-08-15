@@ -11,6 +11,17 @@ def index
     @askUserNames.push(askUserName)
   end
 
+  @favCountArray = Array.new()
+  @publicRequests.each do |req|
+    favVotes = FavoriteVote.where(:votable_id => req.id)
+    if favVotes.nil?
+      @favCountArray.push(0)
+    else
+      @favCountArray.push(favVotes.count)
+    end
+  end
+
+
   @isFavArray = Array.new()
   @publicRequests.each do |req|
     if currentUser.nil?
