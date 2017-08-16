@@ -1,0 +1,7 @@
+
+$('#no_comment_block').hide();
+
+$('#comment_block').prepend('<%= j render(:partial => "comment", :locals=> {comment: @newComment}) %>');
+
+// Clear the text field
+$('#comment_text_field').val("");

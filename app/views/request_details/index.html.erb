@@ -5,35 +5,98 @@
   <br />
 
   <h5>Question</h5>
-  <div class="card teal darken-3">
-    <div class="card-content white-text">
-      <b><%= @askUser.nickName %> asked on </b>
-      <b><%= @req.askTime.strftime("%B %d, %Y") %></b>
-      <div style="font-family: 'Courgette', sans-serif">
-        <span class="card-title"><%= @req.title %></span>
-        <div class="divider"></div>
-        <p><%= @req.details %></p>
+  <div class="card teal lighten-5">
+
+    <div class="row card-content">
+
+      <div class="col s2">
+        <div style="">
+          <div style="border: 1px solid white; text-align:center; background-color: teal; width:40px; margin:auto;" class="white-text">
+            <%=@favCount%>
+          </div>
+
+          <% heart_filled_src = "icons/heart_filled_icon.png" %>
+          <% heart_empty_src = "icons/heart_icon.png" %>
+          <div style="margin:auto; width:40px; height:40px;">
+            <% if @isFav %>
+              <%= image_tag(heart_filled_src, class: "favorite", id: "#{@req.id}", size:"40x40", alt:"heart icon", data: { req_id: "#{@req.id}", filled: "true"}) %>
+            <% else %>
+              <%= image_tag(heart_empty_src, class: "favorite", id: "#{@req.id}", size:"40x40", alt:"heart empty icon", data: { req_id: "#{@req.id}", filled: "false"}) %>
+            <% end %>
+          </div>
+
+
+          <% star_filled_src = "icons/star_filled_icon.png" %>
+          <% star_empty_src = "icons/star_icon.png" %>
+          <div style="margin:auto; width:40px; height:40px;">
+            <% if @isStar %>
+              <%= image_tag(star_filled_src, class: "star", id: "#{@req.id}", size:"40x40", alt:"star icon", data: { req_id: "#{@req.id}", filled: "true"}) %>
+            <% else %>
+              <%= image_tag(star_empty_src, class: "star", id: "#{@req.id}", size:"40x40", alt:"star empty icon", data: { req_id: "#{@req.id}", filled: "false"}) %>
+            <% end %>
+          </div>
+
+        </div>
+
       </div>
-    </div>
-  </div>
+
+      <div class="card-texts black-text col s10">
+        <b><%= "#{@askUser.nickName} asked on " %></b>
+        <b><%= @req.askTime.strftime("%B %d, %Y") %></b>
+        <div class="card-title">
+          <%=@req.title%>
+        </div>
+
+        <!-- Card Badges -->
+        <% isRequestPublicString = "Private" %>
+        <% isRequestPublicColor = "grey" %>
+        <% if @req.isPublic %>
+          <% isRequestPublicString = "Public" %>
+          <% isRequestPublicColor = "blue darken-2" %>
+        <% end %>
+
+        <% isRequestAnsweredString = "No Answers" %>
+        <% isRequestAnsweredColor = "grey" %>
+        <% unless @req.answer.nil? %>
+          <% isRequestAnsweredString = "Answered" %>
+          <% isRequestAnsweredColor = "green darken-3" %>
+        <% end %>
+
+        <div style="display:block;">
+          <span class="left_badge new badge <%=isRequestPublicColor%>" data-badge-caption=""><%= isRequestPublicString %></span>
+          <span class="left_badge new badge <%=isRequestAnsweredColor%>" data-badge-caption=""><%= isRequestAnsweredString %></span>
+          <span class="left_badge new badge grey" data-badge-caption="Comments">4</span>
+        </div>
+
+        <div class="divider" style="margin:10px 0px 10px 0px;"></div>
+
+        <!-- Card Question Details -->
+        <p><%= @req.details.truncate(256, separator: ' ') %></p>
+      </div>
+
+    </div> <!-- End of row -->
+
+  </div> <!-- End of card -->
 
   <br />
   <hr />
   <br />
 
 
+  <h5>Advice</h5>
 
   <% if @answerUser.nil? %>
   <div class="center grey-text">
+    <br />
+    <br />
     <h5>No Advice Yet</h5>
+    <br />
   </div>
 
   <% else %>
 
-    <h5>Advice</h5>
-
-    <div class="card teal lighten-3">
-      <div class="card-content">
+    <div class="card teal darken-3">
+      <div class="card-content white-text">
         <b><%= @answerUser.nickName %> answered on </b>
         <b><%= @req.askTime.strftime("%B %d, %Y") %></b>
         <p>
@@ -43,7 +106,45 @@
     </div>
 
   <% end %>
+
+  <br />
+  <hr />
+  <br />
+
+  <h5>Comments</h5>
+
+  <%= form_for :comment, :url=>onCreateComment_path(@req.id), :method=>:post, :remote=>true do |f|%>
+    <%= f.text_field :content, :id=>"comment_text_field", :placeholder=>"Please leave your comments here. (500 characters max)"%>
+    <%= f.submit "Comment", :id=>"submit_comment" %>
+  <% end %>
+
+  <br />
+
+
+  <div id="no_comment_block" class="center grey-text">
+    <% if @comments.nil? || @comments.length == 0 %>
+      <br />
+      <br />
+      <h5>Be the first to comment</h5>
+      <br />
+    <% end %>
+  </div>
+
+  <div id="comment_block">
+
+    <% if !@comments.nil? && @comments.length > 0 %>
+      <% for comment in @comments %>
+
+        <%= render(:partial => "comment", :locals=> {comment: comment}) %>
+
+      <% end %>
+    <% end %>
+
+  </div> <!-- end of comment block -->
+
 </div>
+<br />
+<br />
 
 <script type="text/javascript">
   mixpanel.track("request_details_viewed", {

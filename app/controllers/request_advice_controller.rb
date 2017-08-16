@@ -69,14 +69,10 @@ class RequestAdviceController < ApplicationController
     newRequest.isPublic = @questionIsPublic
     newRequest.askTime = Time.now
     newRequest.askUserId = currentUser.id
+    # Request is only saved AFTER advice is successfully saved
 
     @questionAskTime = newRequest.askTime
 
-    saveSuccess = true
-    if !newRequest.save
-      saveSuccess = false
-    end
-    @questionId = newRequest.id
 
     # Adding current user's advice to the matched user's request
     matchRequest = Request.find_by(:id => matchRequestId)
@@ -86,6 +82,13 @@ class RequestAdviceController < ApplicationController
         matchRequest.answer = @adviceAnswer
         matchRequest.answerTime = Time.now
         matchRequest.answerUserId = currentUser.id
+
+        saveSuccess = true
+        if !newRequest.save
+          saveSuccess = false
+        end
+        # get id only after saving successfully
+        @questionId = newRequest.id
 
         if !matchRequest.save
           saveSuccess = false

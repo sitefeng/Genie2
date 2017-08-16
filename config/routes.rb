@@ -14,11 +14,12 @@ Rails.application.routes.draw do
   get 'my_requests_starred/index'
 
   post "my_requests_favorited/:request_id", :to => "my_requests_favorited#create", :as => 'my_requests_favorited'
-  
+
   post "my_requests_starred/:request_id", :to => "my_requests_starred#create", :as => 'my_requests_starred'
 
   get '/request_details/index/:id', :to => 'request_details#index', :as => 'request_details'
 
+  post "/request_details/onCreateComment/:request_id", :to=> "request_details#onCreateComment", :as => "onCreateComment"
 
   # Request Advice
   resources :request_advice, only: [] do

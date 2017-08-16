@@ -1,0 +1,9 @@
+<div class="card grey lighten-3">
+  <div class="card-content">
+    <b><%= comment.user.nickName %> commented on </b>
+    <b><%= comment.created_at.strftime("%B %d, %Y, %I:%M:%S %p UTC") %></b>
+    <p>
+      <%= comment.content %>
+    </p>
+  </div>
+</div>
