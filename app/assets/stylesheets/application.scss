@@ -17,6 +17,7 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "materialize";
 
+// Landing page
 nav ul a,
 nav .brand-logo {
   color: #444;
@@ -24,4 +25,12 @@ nav .brand-logo {
 
 .button-collapse {
   color: #26a69a;
+}
+
+
+// Favorite Count Badge for Request Card
+.favorite_count_badge {
+  margin: 0px 10px 0px 0px !important;
+  padding: 4px 8px 4px 8px !important;
+  float: none !important;
 }

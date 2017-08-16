@@ -1,4 +1,7 @@
 class MyRequestsAnswersController < ApplicationController
+
+  include ActivityHelper
+
   def index
     if currentUser.nil?
       flash[:notice] = "Please log in first to see My Answers"
@@ -10,10 +13,15 @@ class MyRequestsAnswersController < ApplicationController
 
     @requests = Request.where(:answerUserId => currentUserId).order(:answerTime => :desc)
 
-    @askUserNames = []
-    for req in @requests
-      askUserName = User.find_by(:id=>req.askUserId).nickName
-      @askUserNames.push(askUserName)
+    @askUserNames = Array.new()
+    @favCountArray = Array.new()
+    @isFavArray = Array.new()
+    @isStarArray = Array.new()
+    @requests.each do |req|
+      @askUserNames.push(getAskUserNickNameForRequest(req))
+      @favCountArray.push(getFavoriteCountForRequest(req))
+      @isFavArray.push(getIsFavoriteForRequest(req))
+      @isStarArray.push(getIsStarForRequest(req))
     end
 
   end

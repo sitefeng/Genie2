@@ -26,19 +26,16 @@
 
   <% @requests.length.times do |i| %>
     <% req = @requests[i] %>
+
+    <% favCount = @favCountArray[i] %>
     <% askUserName = @askUserNames[i] %>
-    <%= link_to(request_details_path(req.id)) do %>
-      <div class="card teal lighten-5">
-        <div class="card-content black-text">
-          <b><%= "#{askUserName} asked on " %></b>
-          <b><%= req.askTime.strftime("%B %d, %Y") %></b>
-          <span class="card-title">
-            <%=req.title%>
-          </span>
-          <p><%= req.details %></p>
-        </div>
-      </div>
-      <% end %>
+    <% isFav = @isFavArray[i] %>
+    <% isStar = @isStarArray[i] %>
+
+    <% if !req.id.nil? %>
+      <%= render :partial => 'partials/request_preview_card', :locals=> {req: req, favCount:favCount, askUserName:askUserName, isFav:isFav, isStar:isStar, disableLink: false} %>
+    <% end %>
+
   <% end %>
 
 </div>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'request_preview_card/index'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # Main Pages
@@ -8,6 +10,8 @@ Rails.application.routes.draw do
   get 'activity/index'
 
   # My Request and Request Details
+  get '/request_preview_card/:request_id', :to => "request_preview_card#index", :as => 'request_preview_card'
+
   get 'my_requests_questions/index'
   get 'my_requests_answers/index'
   get 'my_requests_favorited/index'

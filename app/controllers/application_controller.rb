@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  # include among all actions
+  helper :Application
+
   include LoginHelper
 
   before_action :setInstanceVariables

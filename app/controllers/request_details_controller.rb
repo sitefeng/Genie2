@@ -12,13 +12,13 @@ class RequestDetailsController < ApplicationController
     end
 
     @isFav = false
-    currentUserFavoritedOrNil = FavoriteVote.find_by(:user => currentUser)
+    currentUserFavoritedOrNil = FavoriteVote.find_by(:user => currentUser, :votable => @req)
     unless currentUserFavoritedOrNil.nil?
       @isFav = true
     end
 
     @isStar = false
-    currentUserStarredOrNil = StarVote.find_by(:user => currentUser)
+    currentUserStarredOrNil = StarVote.find_by(:user => currentUser, :votable => @req)
     unless currentUserStarredOrNil.nil?
       @isStar = true
     end

@@ -5,90 +5,17 @@
 
   <% @publicRequests.length.times do |i| %>
     <% req = @publicRequests[i] %>
-    <% askUserName = @askUserNames[i] %>
     <% favCount = @favCountArray[i] %>
+    <% askUserName = @askUserNames[i] %>
     <% isFav = @isFavArray[i] %>
     <% isStar = @isStarArray[i] %>
 
-
-      <div class="card teal lighten-5">
-
-        <div class="row card-content">
-
-          <div class="col s2">
-            <div style="">
-              <div style="border: 1px solid white; text-align:center; background-color: teal; width:40px; margin:auto;" class="white-text">
-                <%=favCount%>
-              </div>
-
-              <% heart_filled_src = "icons/heart_filled_icon.png" %>
-              <% heart_empty_src = "icons/heart_icon.png" %>
-              <div style="margin:auto; width:40px; height:40px;">
-                <% if isFav %>
-                  <%= image_tag(heart_filled_src, class: "favorite", id: "#{req.id}", size:"40x40", alt:"heart icon", data: { req_id: "#{req.id}", filled: "true"}) %>
-                <% else %>
-                  <%= image_tag(heart_empty_src, class: "favorite", id: "#{req.id}", size:"40x40", alt:"heart empty icon", data: { req_id: "#{req.id}", filled: "false"}) %>
-                <% end %>
-              </div>
-
-
-              <% star_filled_src = "icons/star_filled_icon.png" %>
-              <% star_empty_src = "icons/star_icon.png" %>
-              <div style="margin:auto; width:40px; height:40px;">
-                <% if isStar %>
-                  <%= image_tag(star_filled_src, class: "star", id: "#{req.id}", size:"40x40", alt:"star icon", data: { req_id: "#{req.id}", filled: "true"}) %>
-                <% else %>
-                  <%= image_tag(star_empty_src, class: "star", id: "#{req.id}", size:"40x40", alt:"star empty icon", data: { req_id: "#{req.id}", filled: "false"}) %>
-                <% end %>
-              </div>
-
-            </div>
-
-          </div>
-
-          <%= link_to(request_details_path(req.id)) do %>
-          <div class="card-texts black-text col s10">
-            <b><%= "#{askUserName} asked on " %></b>
-            <b><%= req.askTime.strftime("%B %d, %Y") %></b>
-            <div class="card-title">
-              <%=req.title%>
-            </div>
-
-            <!-- Card Badges -->
-            <% isRequestPublicString = "Private" %>
-            <% isRequestPublicColor = "grey" %>
-            <% if req.isPublic %>
-              <% isRequestPublicString = "Public" %>
-              <% isRequestPublicColor = "blue darken-2" %>
-            <% end %>
-
-            <% isRequestAnsweredString = "No Answers" %>
-            <% isRequestAnsweredColor = "grey" %>
-            <% unless req.answer.nil? %>
-              <% isRequestAnsweredString = "Answered" %>
-              <% isRequestAnsweredColor = "green darken-3" %>
-            <% end %>
-
-            <div style="display:block;">
-              <span class="left_badge new badge <%=isRequestPublicColor%>" data-badge-caption=""><%= isRequestPublicString %></span>
-              <span class="left_badge new badge <%=isRequestAnsweredColor%>" data-badge-caption=""><%= isRequestAnsweredString %></span>
-              <span class="left_badge new badge grey" data-badge-caption="Comments">4</span>
-            </div>
-
-            <div class="divider" style="margin:10px 0px 10px 0px;"></div>
-
-            <!-- Card Question Details -->
-            <p><%= req.details.truncate(256, separator: ' ') %></p>
-          </div>
-          <% end %>
-
-        </div> <!-- End of row -->
-
-      </div> <!-- End of card -->
+    <% if !req.id.nil? %>
+      <%= render :partial => 'partials/request_preview_card', :locals=> {req: req, favCount:favCount, askUserName:askUserName, isFav:isFav, isStar:isStar, disableLink: false} %>
+    <% end %>
 
   <% end %>
 
-  <!-- Send Variables to activity.js -->
-  <!--  -->
+
 
 </div>
