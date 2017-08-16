@@ -47,7 +47,7 @@ class RequestAdviceController < ApplicationController
     @questionIsPublic = requestQuestion["isPublic"]
 
     if (requestAdvice.nil? || requestAdvice["answer"].nil?) && !@matchUserId.nil?
-      flash[:notice] = "Error Saving: Advice must be longer than 70 characters"
+      flash[:notice] = "Error Saving: Advice must not be empty"
       redirect_back(fallback_location: request_advice_index_path)
       return
     end
@@ -73,9 +73,14 @@ class RequestAdviceController < ApplicationController
 
     @questionAskTime = newRequest.askTime
 
+    # For error tracking
+    saveSuccess = true
 
     # Adding current user's advice to the matched user's request
     matchRequest = Request.find_by(:id => matchRequestId)
+
+    # If there is matched request for user, save the request after advice is given.
+    # If no match is given to user, save the question directly
     if !matchRequest.nil?
 
       if @adviceAnswer.length > 70
@@ -83,7 +88,6 @@ class RequestAdviceController < ApplicationController
         matchRequest.answerTime = Time.now
         matchRequest.answerUserId = currentUser.id
 
-        saveSuccess = true
         if !newRequest.save
           saveSuccess = false
         end
@@ -99,7 +103,14 @@ class RequestAdviceController < ApplicationController
         return
       end
 
+    else # if no matched request, save the question directly
+      if !newRequest.save
+        saveSuccess = false
+      end
     end
+
+    # Get id only after saving successfully
+    @questionId = newRequest.id
 
     if saveSuccess
       flash[:notice] = "Request Submitted Successfully"

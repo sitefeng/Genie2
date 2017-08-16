@@ -5,3 +5,7 @@ $('#comment_block').prepend('<%= j render(:partial => "comment", :locals=> {comm
 
 // Clear the text field
 $('#comment_text_field').val("");
+
+mixpanel.track("onCreateComment", {
+    "user_id": 000,
+});
