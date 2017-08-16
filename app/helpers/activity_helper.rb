@@ -1,10 +1,18 @@
 module ActivityHelper
 
   def getAskUserNickNameForRequest(req)
-    askUserId = req.askUserId
-    askUserName = User.find(askUserId).nickName
+    askUserName = User.find_by(:id => req.askUserId).nickName
     return askUserName
   end
+
+  def getAnswerUserNickNameForRequest(req)
+    askUser = User.find_by(:id => req.answerUserId)
+    if askUser.nil?
+      return nil
+    end
+    return askUser.nickName
+  end
+
 
   def getFavoriteCountForRequest(req)
     favVotes = FavoriteVote.where(:votable_id => req.id)
@@ -45,6 +53,11 @@ module ActivityHelper
       end
     end
     return isStar
+  end
+
+  def getCommentCountForRequest(req)
+    commentCount = Comment.where(:request => req).length
+    return commentCount
   end
 
 end

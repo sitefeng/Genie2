@@ -10,15 +10,16 @@
 
 
   <!-- Main Contents -->
-  <% @starredRequests.length.times do |i| %>
-    <% req = @starredRequests[i] %>
+  <% @requests.length.times do |i| %>
+    <% req = @requests[i] %>
     <% favCount = @favCountArray[i] %>
     <% askUserName = @askUserNames[i] %>
     <% isFav = @isFavArray[i] %>
     <% isStar = @isStarArray[i] %>
+    <% commentCount = @commentCountArray[i] %>
 
     <% if !req.id.nil? %>
-      <%= render :partial => 'partials/request_preview_card', :locals=> {req: req, favCount:favCount, askUserName:askUserName, isFav:isFav, isStar:isStar, disableLink: false} %>
+      <%= render :partial => 'partials/request_preview_card', :locals=> {req: req, favCount:favCount, askUserName:askUserName, isFav:isFav, isStar:isStar, disableLink: false, commentCount:commentCount} %>
     <% end %>
 
   <% end %>

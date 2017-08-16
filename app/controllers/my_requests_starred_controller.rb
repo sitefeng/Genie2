@@ -1,7 +1,7 @@
 class MyRequestsStarredController < ApplicationController
 
   include ActivityHelper
-  
+
   def index
     if currentUser.nil?
       flash[:notice] = "Please log in first to see My Requests"
@@ -11,25 +11,27 @@ class MyRequestsStarredController < ApplicationController
 
     @starredVotes = StarVote.where(:user => currentUser, :votable_type=>:Request).order(:updated_at => :desc)
 
-    @starredRequests = Array.new()
+    @requests = Array.new()
     for starVote in @starredVotes
       requestForVote = starVote.votable
-      @starredRequests.push(requestForVote)
+      @requests.push(requestForVote)
     end
 
-    if @starredRequests.nil?
-      @starredRequests = Array.new()
+    if @requests.nil?
+      @requests = Array.new()
     end
 
     @askUserNames = Array.new()
     @favCountArray = Array.new()
     @isFavArray = Array.new()
     @isStarArray = Array.new()
-    @starredRequests.each do |req|
+    @commentCountArray = Array.new()
+    @requests.each do |req|
       @askUserNames.push(getAskUserNickNameForRequest(req))
       @favCountArray.push(getFavoriteCountForRequest(req))
       @isFavArray.push(getIsFavoriteForRequest(req))
       @isStarArray.push(getIsStarForRequest(req))
+      @commentCountArray.push(getCommentCountForRequest(req))
     end
   end
 

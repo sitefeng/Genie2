@@ -1,27 +1,17 @@
 class RequestDetailsController < ApplicationController
+
+  include ActivityHelper
+
   def index
     reqId = params[:id]
     @req = Request.find_by(:id => reqId)
-    @askUser = User.find_by(:id => @req.askUserId)
-    @answerUser = User.find_by(:id => @req.answerUserId)
+    @askUserName = getAskUserNickNameForRequest(@req)
+    @answerUser = getAnswerUserNickNameForRequest(@req)
 
-    @favCount = 0
-    favs = FavoriteVote.where(:votable => @req)
-    unless favs.nil?
-      @favCount = favs.length
-    end
-
-    @isFav = false
-    currentUserFavoritedOrNil = FavoriteVote.find_by(:user => currentUser, :votable => @req)
-    unless currentUserFavoritedOrNil.nil?
-      @isFav = true
-    end
-
-    @isStar = false
-    currentUserStarredOrNil = StarVote.find_by(:user => currentUser, :votable => @req)
-    unless currentUserStarredOrNil.nil?
-      @isStar = true
-    end
+    @favCount = getFavoriteCountForRequest(@req)
+    @isFav = getIsFavoriteForRequest(@req)
+    @isStar = getIsStarForRequest(@req)
+    @commentCount = getCommentCountForRequest(@req)
 
     @comments = Comment.where(:request => @req).order(:created_at => :desc).limit(300)
 
