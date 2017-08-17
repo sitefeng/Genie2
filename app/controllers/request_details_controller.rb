@@ -19,18 +19,19 @@ class RequestDetailsController < ApplicationController
 
   def onCreateComment
 
+    rawComment = params["comment"]
+    requestId = params['request_id']
+
     if currentUser.nil?
       flash['notice'] = "Please log in first to comment"
+      redirect_to login_index_path
       return
     end
-
-    rawComment = params["comment"]
 
     @newComment = Comment.new()
     @newComment.content = rawComment['content'].truncate(500, separator: ' ')
     @newComment.user = currentUser
 
-    requestId = params['request_id']
     newCommentRequest = Request.find_by(:id => requestId)
     @newComment.request = newCommentRequest
 

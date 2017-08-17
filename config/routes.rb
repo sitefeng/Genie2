@@ -43,7 +43,13 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'settings/index'
+  resources :settings, only: [] do
+    collection do
+      get 'index'
+      post 'onUserUpdate'
+    end
+  end
+
   get '/logout',  to: 'login#onLogout'
 
 

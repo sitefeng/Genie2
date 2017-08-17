@@ -4,25 +4,31 @@
   <div class="divider"></div>
   <br />
 
-  <!-- Inner Menu Selection -->
-  <%= render :partial=>'partials/my_requests_selection', :locals=> {active_row:3} %>
-  <!--end of selection list area-->
+  <div class="row">
+    <div class="col s12 m3">
+      <!-- Inner Menu Selection -->
+      <%= render :partial=>'partials/my_requests_selection', :locals=> {active_row:3} %>
+      <!--end of selection list area-->
+    </div>
 
+    <div class="col s12 m9">
 
-  <!-- Main Contents -->
-  <% @requests.length.times do |i| %>
-    <% req = @requests[i] %>
-    <% favCount = @favCountArray[i] %>
-    <% askUserName = @askUserNames[i] %>
-    <% isFav = @isFavArray[i] %>
-    <% isStar = @isStarArray[i] %>
-    <% commentCount = @commentCountArray[i] %>
+      <!-- Main Contents -->
+      <% @requests.length.times do |i| %>
+        <% req = @requests[i] %>
+        <% favCount = @favCountArray[i] %>
+        <% askUserName = @askUserNames[i] %>
+        <% isFav = @isFavArray[i] %>
+        <% isStar = @isStarArray[i] %>
+        <% commentCount = @commentCountArray[i] %>
 
-    <% if !req.id.nil? %>
-      <%= render :partial => 'partials/request_preview_card', :locals=> {req: req, favCount:favCount, askUserName:askUserName, isFav:isFav, isStar:isStar, disableLink: false, commentCount:commentCount} %>
-    <% end %>
+        <% if !req.id.nil? %>
+          <%= render :partial => 'partials/request_preview_card', :locals=> {req: req, favCount:favCount, askUserName:askUserName, isFav:isFav, isStar:isStar, disableLink: false, commentCount:commentCount} %>
+        <% end %>
 
-  <% end %>
+      <% end %>
+    </div>
+  </div>
 
 </div>
 

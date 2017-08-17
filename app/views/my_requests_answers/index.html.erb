@@ -4,40 +4,47 @@
   <div class="divider"></div>
   <br />
 
-  <!-- Inner Menu Selection -->
-  <%= render :partial=>'partials/my_requests_selection', :locals=> {active_row:1} %>
-  <!--end of selection list area-->
-
-  <% if @requests.length == 0 %>
-    <div class="center">
-      <br />
-      <h3 class="center-align grey-text"><i class="large material-icons">create</i></h3>
-      <h5 class="center-align grey-text">You haven't given any advices yet. Try giving your first advice while making a personal request.</h5>
-      <br />
-      <div class="btn-large waves-effect waves-light orange">
-        <%= button_to "Request Advice", request_advice_index_path, :method => :get %>
-      </div>
-
-      <br />
-      <br />
+  <div class="row">
+    <div class="col s12 m3">
+      <!-- Inner Menu Selection -->
+      <%= render :partial=>'partials/my_requests_selection', :locals=> {active_row:1} %>
+      <!--end of selection list area-->
     </div>
-  <% end %>
+
+    <div class="col s12 m9">
+
+      <% if @requests.length == 0 %>
+        <div class="center">
+          <br />
+          <h3 class="center-align grey-text"><i class="large material-icons">create</i></h3>
+          <h5 class="center-align grey-text">You haven't given any advices yet. Try giving your first advice while making a personal request.</h5>
+          <br />
+          <div class="btn-large waves-effect waves-light orange">
+            <%= button_to "Request Advice", request_advice_index_path, :method => :get %>
+          </div>
+
+          <br />
+          <br />
+        </div>
+      <% end %>
 
 
-  <% @requests.length.times do |i| %>
-    <% req = @requests[i] %>
+      <% @requests.length.times do |i| %>
+        <% req = @requests[i] %>
 
-    <% favCount = @favCountArray[i] %>
-    <% askUserName = @askUserNames[i] %>
-    <% isFav = @isFavArray[i] %>
-    <% isStar = @isStarArray[i] %>
-    <% commentCount = @commentCountArray[i] %>
+        <% favCount = @favCountArray[i] %>
+        <% askUserName = @askUserNames[i] %>
+        <% isFav = @isFavArray[i] %>
+        <% isStar = @isStarArray[i] %>
+        <% commentCount = @commentCountArray[i] %>
 
-    <% if !req.id.nil? %>
-      <%= render :partial => 'partials/request_preview_card', :locals=> {req: req, favCount:favCount, askUserName:askUserName, isFav:isFav, isStar:isStar, disableLink: false, commentCount:commentCount} %>
-    <% end %>
+        <% if !req.id.nil? %>
+          <%= render :partial => 'partials/request_preview_card', :locals=> {req: req, favCount:favCount, askUserName:askUserName, isFav:isFav, isStar:isStar, disableLink: false, commentCount:commentCount} %>
+        <% end %>
 
-  <% end %>
+      <% end %>
+    </div>
+  </div>
 
 </div>
 
