@@ -7,11 +7,11 @@
     <div class="col s12 m6">
       <div class="center teal-text"><i class="material-icons" style="font-size:60pt;">person_pin</i></div>
       <div class="center">
-        <b>Username: sitefeng</b>
+        <b>Username: <%=@username%></b>
         <br />
-        <b>Email: fengsite@hotmail.com</b>
+        <b>Email: <%=@email%></b>
         <br />
-        <b>Public Nickname: sitefeng</b>
+        <b>Public Nickname: <%=@nickName%></b>
       </div>
 
       <br />
@@ -20,11 +20,11 @@
 
       <div id="user_metrics">
         <h5>Stats</h5>
-        <div><b>Questions Asked:</b> 3</div>
-        <div><b>Advices Given:</b> 3</div>
-        <div><b>Favorited Requests:</b> 12</div>
-        <div><b>Starred Requests:</b> 4</div>
-        <div><b>Member Since:</b> July 8, 2017</div>
+        <div><b>Questions Asked:</b> <%=@numQuestions%></div>
+        <div><b>Advices Given:</b> <%=@numAnswers%></div>
+        <div><b>Favorited Requests:</b> <%=@numFavorites%></div>
+        <div><b>Starred Requests:</b> <%=@numStars%></div>
+        <div><b>Member Since:</b> <%=@memberSinceString%></div>
       </div>
 
       <br />
@@ -41,16 +41,16 @@
       <%= form_for :user, :url=>onUserUpdate_settings_path do |f|%>
         <div>
           <%= f.label "Public Nickname", :for=>:nickName %>
-          <%= f.text_field :nickName, :placeholder=>"sitefeng" %>
+          <%= f.text_field :nickName, :placeholder=>"#{@nickName}" %>
         </div>
 
         <div>
           <%= f.label "Email", :for=>:email %>
-          <%= f.text_field :email, :placeholder=>"sitefeng@gmail.com" %>
+          <%= f.text_field :email, :placeholder=>"#{@email}" %>
         </div>
 
         <div>
-          <%= f.check_box :email_notification, :id=>"email_notification" %>
+          <%= f.check_box :email_notification, :checked=>@isNotified, :id=>"email_notification" %>
           <%= f.label "Subscribe to email notifications", :for => :email_notification %>
         </div>
 
