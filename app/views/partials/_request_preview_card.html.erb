@@ -59,8 +59,8 @@
       <% end %>
 
       <div style="display:block;">
-        <span class="favorite_count_badge new badge <%=isRequestPublicColor%>" data-badge-caption=""><%= isRequestPublicString %></span>
-        <span class="favorite_count_badge new badge <%=isRequestAnsweredColor%>" data-badge-caption=""><%= isRequestAnsweredString %></span>
+        <span class="favorite_count_badge new badge <%=isRequestPublicColor%>" data-badge-caption=""><%=isRequestPublicString%></span>
+        <span class="favorite_count_badge new badge <%=isRequestAnsweredColor%>" data-badge-caption=""><%=isRequestAnsweredString%></span>
         <span class="favorite_count_badge new badge grey" data-badge-caption="<%= pluralize(commentCount, "Comment")%>"></span>
       </div>
 
