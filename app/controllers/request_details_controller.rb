@@ -6,7 +6,7 @@ class RequestDetailsController < ApplicationController
     reqId = params[:id]
     @req = Request.find_by(:id => reqId)
     @askUserName = getAskUserNickNameForRequest(@req)
-    @answerUser = getAnswerUserNickNameForRequest(@req)
+    @answerUserName = getAnswerUserNickNameForRequest(@req)
 
     @favCount = getFavoriteCountForRequest(@req)
     @isFav = getIsFavoriteForRequest(@req)
