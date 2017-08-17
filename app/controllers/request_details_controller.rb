@@ -1,6 +1,6 @@
 class RequestDetailsController < ApplicationController
 
-  include ActivityHelper
+  include RequestDetailsHelper
 
   def index
     reqId = params[:id]

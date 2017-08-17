@@ -1,6 +1,6 @@
 class ActivityController < ApplicationController
 
-include ActivityHelper
+include RequestDetailsHelper
 
 def index
   # show only public posts on activity page

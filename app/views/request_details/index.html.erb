@@ -44,7 +44,7 @@
   <h5>Comments</h5>
 
   <%= form_for :comment, :url=>onCreateComment_path(@req.id), :method=>:post, :remote=>true do |f|%>
-    <%= f.text_field :content, :id=>"comment_text_field", :placeholder=>"Please leave your comments here. (500 characters max)"%>
+    <%= f.text_area :content, :id=>"comment_text_field", :class=>"materialize-textarea", :placeholder=>"Please leave your comments here. (500 characters max)"%>
     <%= f.submit "Comment", :id=>"submit_comment" %>
   <% end %>
 

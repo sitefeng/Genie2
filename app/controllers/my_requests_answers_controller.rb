@@ -1,6 +1,6 @@
 class MyRequestsAnswersController < ApplicationController
 
-  include ActivityHelper
+  include RequestDetailsHelper
 
   def index
     if currentUser.nil?
