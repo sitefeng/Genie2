@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'request_preview_card/index'
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # Main Pages
@@ -57,5 +55,7 @@ Rails.application.routes.draw do
   get 'about/index'
   get 'terms_of_service/index'
   get 'privacy_policy/index'
+
+  get '/google3e09508c655584f0', :to => redirect('/google3e09508c655584f0.html')
 
 end
