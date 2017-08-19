@@ -7,7 +7,7 @@
 
   <div class="row">
 
-    <%= form_for :request_question, :url=>onSubmitQuestion_request_advice_index_path do |f| %>
+    <%= form_for :request_question, :id=>"request_form", :url=>onSubmitQuestion_request_advice_index_path do |f| %>
 
     <div class="col s12 l6">
       <div>
@@ -16,12 +16,12 @@
         <br />
 
         <div class="input-field">
-          <%= f.text_field :title, :placeholder=>"Your question title goes here", :type=>"text", :id=>"title", :html => {'data-length'=>"255"} %>
+          <%= f.text_field :title, :id=>"question_title", :placeholder=>"Your question title goes here (10-255 characters)", :type=>"text", :id=>"title", :html => {'data-length'=>"255"} %>
           <%= f.label "Question Title", :for => :title %>
         </div>
 
         <div class="input-field">
-          <%= f.text_area :details, :placeholder=>"Details of your question goes here", :id=>"details", :class=>"materialize-textarea" %>
+          <%= f.text_area :details, :placeholder=>"Details of your question goes here (5000 characters max)", :id=>"details", :class=>"materialize-textarea" %>
           <%= f.label "Question Details", :for => :details %>
         </div>
 
@@ -67,8 +67,8 @@
 
           <%= fields_for :request_advice do |advice_field| %>
 
-            <%= advice_field.label "Your Perspective and Advice (>70 characters)", :for=>:answer %>
-            <%= advice_field.text_area :answer, :class=>"materialize-textarea", :placeholder => "Please give your advice here." %>
+            <%= advice_field.label "Your Perspective and Advice", :for=>:answer %>
+            <%= advice_field.text_area :answer, :id=>"advice_field", :class=>"materialize-textarea", :placeholder => "Please give your advice here (70-5000 characters)" %>
 
           <% end %> <!-- end of fields_for -->
 
@@ -79,7 +79,7 @@
     </div>
 
     <div class="row center">
-      <span class="btn-large waves-effect waves-light orange"><%= f.submit "Submit Request"%></span>
+      <span class="btn-large waves-effect waves-light orange"><%= f.submit "Submit Request", :id=>"submit_button"%></span>
     </div>
 
     <% end %>

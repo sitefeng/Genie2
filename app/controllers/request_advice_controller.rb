@@ -42,9 +42,23 @@ class RequestAdviceController < ApplicationController
     matchUserId = params["matchUserId"]
     matchRequestId = params["matchRequestId"]
 
-    @questionTitle = requestQuestion["title"]
-    @questionDetails = requestQuestion["details"]
+    rawQuestionTitle = requestQuestion["title"]
+    rawQuestionDetails = requestQuestion["details"]
     @questionIsPublic = requestQuestion["isPublic"]
+
+    # Submition filtering
+    #----------------------
+    if rawQuestionTitle.nil? ||
+      rawQuestionTitle.length < 10 ||
+      rawQuestionTitle.length > 255
+      flash[:notice] = "Error Saving: Question title must be 10 to 255 characters"
+      redirect_back(fallback_location: request_advice_index_path)
+      return
+    end
+
+    @questionTitle = rawQuestionTitle
+
+    @questionDetails = rawQuestionDetails.truncate(5000, " ")
 
     if (requestAdvice.nil? || requestAdvice["answer"].nil?) && !@matchUserId.nil?
       flash[:notice] = "Error Saving: Advice must not be empty"
@@ -57,6 +71,8 @@ class RequestAdviceController < ApplicationController
       @adviceAnswer = requestAdvice["answer"]
     end
 
+
+    # Set other instance variables
     @questionIsPublicString = "Private Question. No one other than matched users can see this request."
     if @questionIsPublic == 1
       @questionIsPublicString = "Public Question. Is viewable by anyone."
@@ -84,7 +100,7 @@ class RequestAdviceController < ApplicationController
     if !matchRequest.nil?
 
       if @adviceAnswer.length > 70
-        matchRequest.answer = @adviceAnswer
+        matchRequest.answer = @adviceAnswer.truncate(5000, separator: ' ')
         matchRequest.answerTime = Time.now
         matchRequest.answerUserId = currentUser.id
 

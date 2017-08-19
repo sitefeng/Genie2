@@ -5,11 +5,15 @@ class LoginController < ApplicationController
   def onLogin
 
     userLogin = params["user_login"]
+    username = userLogin['username']
+    password = userLogin['password']
 
-    if userLogin['username'].length < 6 ||
-       userLogin['username'].length > 20 ||
-       userLogin['password'].length < 6 ||
-       userLogin['password'].length > 20
+    if username.nil? ||
+       password.nil? ||
+       username.length < 6 ||
+       username.length > 20 ||
+       password.length < 6 ||
+       password.length > 20
        flash[:notice] = "Login Failed: Please enter valid username and password"
        redirect_back(fallback_location: login_index_path)
        return
@@ -44,8 +48,36 @@ class LoginController < ApplicationController
 
     userSignup = params["user_signup"]
 
-    dupUser1 = User.find_by(:username => userSignup["username"])
-    dupUser2 = User.find_by(:email => userSignup["email"])
+    username = userSignup['username']
+    email = userSignup["email"]
+    password = userSignup['password']
+    nickname = userSignup["nick_name"]
+
+    if username.nil? ||
+       password.nil? ||
+       username.length < 6 ||
+       username.length > 20 ||
+       password.length < 6 ||
+       password.length > 20
+       flash[:notice] = "Login Failed: Please enter valid username and password between 6 to 20 digits"
+       redirect_back(fallback_location: login_index_path)
+       return
+     end
+
+    if nickname.nil? || nickname == "" || nickname.length >= 25
+      flash['notice'] = "Please enter a valid nickname less than 25 characters and not empty"
+      redirect_back(fallback_location: login_index_path)
+      return
+    end
+
+    if email.nil? || email == "" || email.length >= 100
+      flash['notice'] = "Please enter a valid email less than 100 characters"
+      redirect_back(fallback_location: login_index_path)
+      return
+    end
+
+    dupUser1 = User.find_by(:username => username)
+    dupUser2 = User.find_by(:email => email)
 
     if dupUser1 != nil || dupUser2 != nil
       flash[:notice] = "Error Registering: User with the same username or email already exists"
@@ -60,10 +92,11 @@ class LoginController < ApplicationController
     end
 
     newUser = User.new
-    newUser.username = userSignup["username"]
-    newUser.password = userSignup["password"]
-    newUser.email = userSignup["email"]
-    newUser.nickName = userSignup["nick_name"]
+    newUser.username = username
+    newUser.password = password
+    newUser.email = email
+    newUser.nickName = nickname
+    newUser.emailNotifications = true
     # newUser.emailNotifications = userSignup["email_notifications"]
 
     if newUser.save

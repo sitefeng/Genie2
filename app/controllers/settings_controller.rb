@@ -41,11 +41,30 @@ class SettingsController < ApplicationController
     newIsNotif = rawUserDict['email_notification']
 
     if !newNickname.nil? && newNickname != ""
+
+      if newNickname.length >= 25
+        flash['notice'] = "Sorry, nickname must be less than 25 characters"
+        redirect_back(fallback_location: settings_path)
+        return
+      end
       currentUser.nickName = newNickname
     end
 
     if !newEmail.nil? && newEmail != ""
+      if newEmail.length >= 100
+        flash['notice'] = "Sorry, email must be less than 100 characters"
+        redirect_back(fallback_location: settings_path)
+        return
+      end
       currentUser.email = newEmail
+    end
+
+    dupUser = User.find_by(:email => newEmail)
+
+    if dupUser != nil
+      flash[:notice] = "Sorry, user with the same email already exists"
+      redirect_back(fallback_location: settings_path)
+      return
     end
 
     currentUser.emailNotifications = newIsNotif

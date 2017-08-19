@@ -36,7 +36,8 @@ class RequestDetailsController < ApplicationController
     @newComment.request = newCommentRequest
 
     if !@newComment.save
-      flash['notice'] = "Cannot comment at this time. Please try again later."
+      flash['notice'] = "Error posting comment: #{@newComment.errors.full_messages}"
+      redirect_back(:fallback_location => request_details_path(requestId))
       return
     end
 
