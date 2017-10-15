@@ -36,6 +36,11 @@ class RequestAdviceController < ApplicationController
       return
     end
 
+    if !verify_recaptcha
+      redirect_to(request_advice_index_path)
+      return
+    end
+
     requestQuestion = params["request_question"]
     requestAdvice = params["request_advice"]
     @matchUserName = params["matchUserName"]
@@ -71,7 +76,6 @@ class RequestAdviceController < ApplicationController
       @adviceAnswer = requestAdvice["answer"]
     end
 
-
     # Set other instance variables
     @questionIsPublicString = "Private Question. No one other than matched users can see this request."
     if @questionIsPublic == 1
@@ -99,7 +103,7 @@ class RequestAdviceController < ApplicationController
     # If no match is given to user, save the question directly
     if !matchRequest.nil?
 
-      if @adviceAnswer.length > 70
+      if @adviceAnswer.length > 2 && @adviceAnswer.length < 5000
         matchRequest.answer = @adviceAnswer.truncate(5000, separator: ' ')
         matchRequest.answerTime = Time.now
         matchRequest.answerUserId = currentUser.id
@@ -114,7 +118,7 @@ class RequestAdviceController < ApplicationController
           saveSuccess = false
         end
       else
-        flash[:notice] = "Error Saving: Advice must be longer than 70 characters"
+        flash[:notice] = "Error Saving: Advice must be 2 to 5000 characters"
         redirect_back(fallback_location: request_advice_index_path)
         return
       end

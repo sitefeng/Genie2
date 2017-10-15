@@ -99,12 +99,9 @@ class LoginController < ApplicationController
     newUser.emailNotifications = true
     # newUser.emailNotifications = userSignup["email_notifications"]
 
-    if newUser.save
-
+    if verify_recaptcha(model: newUser) && newUser.save
       # Log in session after registration
       logInSession(newUser.id)
-
-      flash[:notice] = "Registration Success"
     else
       flash[:notice] = "Error Registering: #{newUser.errors.full_messages}"
       redirect_back(fallback_location: login_index_path)

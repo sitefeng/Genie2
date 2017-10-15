@@ -17,8 +17,8 @@ $(document).on('turbolinks:load', function() {
     }
 
     var requestField = $('#advice_field').attr("value");
-    if(requestField.length < 70 || requestField.length > 5000) {
-      alert("Advice must be 70 to 5000 characters");
+    if(requestField.length < 2 || requestField.length > 5000) {
+      alert("Advice must be 2 to 5000 characters");
       $("#request_form").preventDefault(); // not working
     }
   });

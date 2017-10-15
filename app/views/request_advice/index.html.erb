@@ -29,6 +29,10 @@
           <%= f.check_box :isPublic, :id=>"isPublic" %>
           <%= f.label "Make my request public", :for => :isPublic %>
         </div>
+
+        <br />
+        <%= recaptcha_tags %>
+        
       </div>
       <br />
       <br />
@@ -68,13 +72,12 @@
           <%= fields_for :request_advice do |advice_field| %>
 
             <%= advice_field.label "Your Perspective and Advice", :for=>:answer %>
-            <%= advice_field.text_area :answer, :id=>"advice_field", :class=>"materialize-textarea", :placeholder => "Please give your advice here (70-5000 characters)" %>
+            <%= advice_field.text_area :answer, :id=>"advice_field", :class=>"materialize-textarea", :placeholder => "Please give your advice here (2 to 5000 characters)" %>
 
           <% end %> <!-- end of fields_for -->
 
          <% end %> <!-- end of if @matchUserName.nil? statement -->
       </div>
-
 
     </div>
 

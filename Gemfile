@@ -65,3 +65,5 @@ gem 'dotenv-rails'
 
 # for sending variables from ruby to js file
 gem 'gon'
+
+gem "recaptcha", require: "recaptcha/rails"
