@@ -54,9 +54,9 @@ class RequestAdviceController < ApplicationController
     # Submition filtering
     #----------------------
     if rawQuestionTitle.nil? ||
-      rawQuestionTitle.length < 10 ||
-      rawQuestionTitle.length > 255
-      flash[:notice] = "Error Saving: Question title must be 10 to 255 characters"
+      rawQuestionTitle.length < 2 ||
+      rawQuestionTitle.length > 250
+      flash[:notice] = "Error Saving: Question title must be 2 to 250 characters"
       redirect_back(fallback_location: request_advice_index_path)
       return
     end
@@ -95,6 +95,7 @@ class RequestAdviceController < ApplicationController
 
     # For error tracking
     saveSuccess = true
+    appendedToAnswer = false
 
     # Adding current user's advice to the matched user's request
     matchRequest = Request.find_by(:id => matchRequestId)
@@ -104,15 +105,21 @@ class RequestAdviceController < ApplicationController
     if !matchRequest.nil?
 
       if @adviceAnswer.length > 2 && @adviceAnswer.length < 5000
-        matchRequest.answer = @adviceAnswer.truncate(5000, separator: ' ')
-        matchRequest.answerTime = Time.now
-        matchRequest.answerUserId = currentUser.id
+        if matchRequest.answer.nil?
+          appendedToAnswer = false
+
+          matchRequest.answer = @adviceAnswer.truncate(5000, separator: ' ')
+          matchRequest.answerTime = Time.now
+          matchRequest.answerUserId = currentUser.id
+        else
+          appendedToAnswer = true
+
+          matchRequest.answer = matchRequest.answer + "\n~~~\n" + "#{currentUser.nickName} gave another answer\n" + @adviceAnswer.truncate(5000, separator: ' ')
+        end
 
         if !newRequest.save
           saveSuccess = false
         end
-        # get id only after saving successfully
-        @questionId = newRequest.id
 
         if !matchRequest.save
           saveSuccess = false
@@ -133,7 +140,12 @@ class RequestAdviceController < ApplicationController
     @questionId = newRequest.id
 
     if saveSuccess
-      flash[:notice] = "Request Submitted Successfully"
+      if appendedToAnswer
+        flash[:notice] = "Request Success! Someone gave an advice to the question you were answering. Your advice is added but won't be visible under My Requests"
+      else
+        flash[:notice] = "Request Submitted Successfully"
+      end
+      return
     else
       flash[:notice] = "Error Saving: #{newRequest.errors.full_messages}"
       redirect_back(fallback_location: request_advice_index_path)
