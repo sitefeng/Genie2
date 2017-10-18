@@ -67,7 +67,11 @@
       <div class="divider" style="margin:10px 0px 10px 0px;"></div>
 
       <!-- Card Question Details -->
-      <p><%= req.details.truncate(256, separator: ' ') %></p>
+      <% if isRequestDetailsPage == true %>
+        <p><%= req.details.truncate(5000, separator: ' ') %></p>
+      <% else %>
+        <p><%= req.details.truncate(256, separator: ' ') %></p>
+      <% end %>
     </div>
     <% end %>
 

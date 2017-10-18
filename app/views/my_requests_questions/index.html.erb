@@ -48,7 +48,7 @@
         <% commentCount = @commentCountArray[i] %>
 
         <% if !req.id.nil? %>
-          <%= render :partial => 'partials/request_preview_card', :locals=> {req: req, favCount:favCount, askUserName:askUserName, isFav:isFav, isStar:isStar, disableLink: false, commentCount:commentCount} %>
+          <%= render :partial => 'partials/request_preview_card', :locals=> {req: req, favCount:favCount, askUserName:askUserName, isFav:isFav, isStar:isStar, disableLink: false, commentCount:commentCount, isRequestDetailsPage: false} %>
         <% end %>
 
       <% end %>
