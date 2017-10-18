@@ -36,10 +36,10 @@ class RequestAdviceController < ApplicationController
       return
     end
 
-    if !verify_recaptcha
-      redirect_to(request_advice_index_path)
-      return
-    end
+    # if !verify_recaptcha
+    #   redirect_to(request_advice_index_path)
+    #   return
+    # end
 
     requestQuestion = params["request_question"]
     requestAdvice = params["request_advice"]
