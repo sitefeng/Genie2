@@ -4,7 +4,7 @@ include RequestDetailsHelper
 
 def index
   # show only public posts on activity page
-  @publicRequests = Request.where(:isPublic => true).order(:askTime => :desc).limit(50)
+  @publicRequests = Request.where(:isPublic => true).order(:askTime => :desc).limit(15)
 
   @askUserNames = Array.new()
   @favCountArray = Array.new()
