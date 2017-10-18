@@ -32,7 +32,7 @@
 
         <br />
         <%= recaptcha_tags %>
-        
+
       </div>
       <br />
       <br />
@@ -53,11 +53,11 @@
             <div class="card-content white-text">
               <inline><%=@matchUserName%> asked on </inline>
               <inline><%=@matchRequestAskTime%></inline>
-              <div style="font-family: 'Courgette', sans-serif">
-                <span class="card-title"><%=@matchReqeustTitle%></span>
+              <div>
+                <span class="card-title" style="font-family: 'Courgette', sans-serif"><%=@matchReqeustTitle%></span>
                 <p><%=@matchReqeustDetails%></p>
                 <br />
-                <p>
+                <p style="font-family: 'Courgette', sans-serif">
                   Sincerely,<br />
                   <%=@matchUserName%>
                 </p>
