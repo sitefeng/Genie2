@@ -104,7 +104,7 @@ class RequestAdviceController < ApplicationController
     # If no match is given to user, save the question directly
     if !matchRequest.nil?
 
-      if @adviceAnswer.length > 2 && @adviceAnswer.length < 5000
+      if @adviceAnswer.length > 30 && @adviceAnswer.length < 5000
         if matchRequest.answer.nil?
           appendedToAnswer = false
 
