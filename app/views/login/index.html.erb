@@ -1,5 +1,10 @@
 <div class="container">
-  <h4>Log In / Signup</h4>
+  <div>
+    <% heart_filled_src = "icons/icon-donna2.png" %>
+    <%= image_tag(heart_filled_src, class: "donna_icon", size:"40x40", alt:"donna icon", style:"margin-top:10px;margin-bottom:-10px;") %>
+    <h4 style="display: inline;">Log In / Signup</h4>
+  </div>
+
   <div class="divider"></div>
   <br />
 
@@ -45,10 +50,10 @@
         <%= f.text_field :username %>
       </div>
 
-      <div>
+      <!-- <div>
         <%= f.label "Email Address", :for=>:email %>
         <%= f.text_field :email %>
-      </div>
+      </div> -->
 
       <div>
         <%= f.label "Password", :for=>:password %>
@@ -60,15 +65,15 @@
         <%= f.password_field :password_repeated %>
       </div>
 
-      <div>
+      <!-- <div>
         <%= f.label "Public Nickname", :for=>:nick_name %>
         <%= f.text_field :nick_name %>
-      </div>
+      </div> -->
 
       <%= recaptcha_tags %>
       <br />
 
-      <p class="teal-text">✓ Anonymous Guarantee: other users will never see your username or email address.</p>
+      <p class="teal-text">✓ Anonymous Guarantee: you may change your public nickname any time in settings.</p>
 
       <p class="teal-text text-lighten-2" style="font-size:10pt;">By clicking Sign Up, I hereby confirm that I have read and agreed to the Terms of Service and Privacy Policies shown in the links section.</p>
 

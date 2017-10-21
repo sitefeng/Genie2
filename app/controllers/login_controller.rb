@@ -49,9 +49,9 @@ class LoginController < ApplicationController
     userSignup = params["user_signup"]
 
     username = userSignup['username']
-    email = userSignup["email"]
+    email = ""
     password = userSignup['password']
-    nickname = userSignup["nick_name"]
+    nickname = username
 
     if username.nil? ||
        password.nil? ||
@@ -64,22 +64,22 @@ class LoginController < ApplicationController
        return
      end
 
-    if nickname.nil? || nickname == "" || nickname.length >= 25
-      flash['notice'] = "Please enter a valid nickname less than 25 characters and not empty"
-      redirect_back(fallback_location: login_index_path)
-      return
-    end
+    # if nickname.nil? || nickname == "" || nickname.length >= 25
+    #   flash['notice'] = "Please enter a valid nickname less than 25 characters and not empty"
+    #   redirect_back(fallback_location: login_index_path)
+    #   return
+    # end
 
-    if email.nil? || email == "" || email.length >= 100
-      flash['notice'] = "Please enter a valid email less than 100 characters"
-      redirect_back(fallback_location: login_index_path)
-      return
-    end
+    # if email.nil? || email == "" || email.length >= 100
+    #   flash['notice'] = "Please enter a valid email less than 100 characters"
+    #   redirect_back(fallback_location: login_index_path)
+    #   return
+    # end
 
     dupUser1 = User.find_by(:username => username)
-    dupUser2 = User.find_by(:email => email)
+    # dupUser2 = User.find_by(:email => email)
 
-    if dupUser1 != nil || dupUser2 != nil
+    if dupUser1 != nil # || dupUser2 != nil
       flash[:notice] = "Error Registering: User with the same username or email already exists"
       redirect_back(fallback_location: login_index_path)
       return
@@ -97,7 +97,6 @@ class LoginController < ApplicationController
     newUser.email = email
     newUser.nickName = nickname
     newUser.emailNotifications = true
-    # newUser.emailNotifications = userSignup["email_notifications"]
 
     if verify_recaptcha(model: newUser) && newUser.save
       # Log in session after registration

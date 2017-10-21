@@ -104,7 +104,7 @@ class RequestAdviceController < ApplicationController
     # If no match is given to user, save the question directly
     if !matchRequest.nil?
 
-      if @adviceAnswer.length > 30 && @adviceAnswer.length < 5000
+      if @adviceAnswer.length >= 2 && @adviceAnswer.length <= 5000
         if matchRequest.answer.nil?
           appendedToAnswer = false
 
@@ -114,7 +114,7 @@ class RequestAdviceController < ApplicationController
         else
           appendedToAnswer = true
 
-          matchRequest.answer = matchRequest.answer + "\n~~~\n" + "#{currentUser.nickName} gave another answer\n" + @adviceAnswer.truncate(5000, separator: ' ')
+          matchRequest.answer = matchRequest.answer + "                                                         " + "(#{currentUser.nickName} gave another answer) --> " + @adviceAnswer.truncate(5000, separator: ' ')
         end
 
         if !newRequest.save
