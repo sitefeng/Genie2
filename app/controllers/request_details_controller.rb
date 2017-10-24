@@ -29,7 +29,7 @@ class RequestDetailsController < ApplicationController
     end
 
     @newComment = Comment.new()
-    @newComment.content = rawComment['content'].truncate(500, separator: ' ')
+    @newComment.content = rawComment['content'].truncate(1500, separator: ' ')
     @newComment.user = currentUser
 
     newCommentRequest = Request.find_by(:id => requestId)
